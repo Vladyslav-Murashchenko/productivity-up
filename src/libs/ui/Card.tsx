@@ -1,5 +1,10 @@
-import { Card as CardHU } from "@heroui/react";
+import { Card as CardH } from "@heroui/react";
 
-export const Card = ({ children }: { children: React.ReactNode }) => {
-  return <CardHU>{children}</CardHU>;
+type CardProps = {
+  children: React.ReactNode;
+  className?: string;
+};
+
+export const Card = (props: CardProps) => {
+  return <CardH {...props} />;
 };

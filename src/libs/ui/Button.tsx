@@ -1,28 +1,14 @@
-import { Button as ButtonHU } from "@heroui/react";
+import { Button as ButtonH } from "@heroui/react";
 
 type ButtonProps = {
   children: React.ReactNode;
   onClick?: () => void;
   size?: "sm" | "md" | "lg";
   isIconOnly?: boolean;
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "tertiary";
+  className?: string;
 };
 
-export const Button = ({
-  children,
-  onClick,
-  size,
-  isIconOnly,
-  variant,
-}: ButtonProps) => {
-  return (
-    <ButtonHU
-      onPress={onClick}
-      size={size}
-      isIconOnly={isIconOnly}
-      variant={variant}
-    >
-      {children}
-    </ButtonHU>
-  );
+export const Button = (props: ButtonProps) => {
+  return <ButtonH {...props} />;
 };
