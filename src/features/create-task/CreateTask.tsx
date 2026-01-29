@@ -13,7 +13,7 @@ export const CreateTask = () => {
   const taskNameInputId = useId();
 
   return (
-    <Card className="flex-row items-end p-8">
+    <Card className="flex-row items-end p-6">
       <TextField className="flex-1">
         <Label htmlFor={taskNameInputId}>
           What would you like to focus on?
