@@ -1,36 +1,19 @@
 "use client";
 import { useState } from "react";
 
-import { Button } from "@/libs/ui/Button";
-import { ButtonGroup } from "@/libs/ui/ButtonGroup";
-
+import { Filter, Filters } from "./Filters";
 import { Task } from "./Task";
 
-type Filter = "todo" | "done";
-
 export const Tasks = () => {
-  const [filter, setFilter] = useState<Filter>("todo");
-
-  const getFilterVariant = (current: Filter) => {
-    return filter === current ? "secondary" : "tertiary";
-  };
+  const [activeFilter, setActiveFilter] = useState<Filter>("todo");
 
   return (
     <div>
-      <ButtonGroup className="mb-6">
-        <Button
-          variant={getFilterVariant("todo")}
-          onClick={() => setFilter("todo")}
-        >
-          Todo
-        </Button>
-        <Button
-          variant={getFilterVariant("done")}
-          onClick={() => setFilter("done")}
-        >
-          Done
-        </Button>
-      </ButtonGroup>
+      <Filters
+        activeFilter={activeFilter}
+        onActiveFilterChange={setActiveFilter}
+        className="mb-6"
+      />
       <ul className="flex flex-col gap-3">
         <li>
           <Task />
