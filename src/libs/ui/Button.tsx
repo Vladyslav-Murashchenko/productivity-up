@@ -5,7 +5,7 @@ type ButtonProps = {
   onClick?: () => void;
   size?: "sm" | "md" | "lg";
   isIconOnly?: boolean;
-  variant?: "primary" | "secondary" | "tertiary";
+  variant?: "primary" | "secondary" | "tertiary" | "ghost";
   className?: string;
 };
 

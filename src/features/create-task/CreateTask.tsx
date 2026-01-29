@@ -28,7 +28,7 @@ export const CreateTask = () => {
           autoFocus
         />
       </TextField>
-      <Button className="h-12" size="lg">
+      <Button className="h-12 rounded-field" size="lg">
         Create
       </Button>
     </Card>
