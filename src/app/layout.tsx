@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+
+import { ToastContainer } from "@/libs/ui/Toast";
+
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -13,7 +16,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark" data-theme="dark">
-      <body className="bg-background text-foreground">{children}</body>
+      <body className="bg-background text-foreground">
+        <ToastContainer />
+        {children}
+      </body>
     </html>
   );
 }

@@ -7,6 +7,7 @@ import { Card } from "@/libs/ui/Card";
 import { Input } from "@/libs/ui/Input";
 import { Label } from "@/libs/ui/Label";
 import { TextField } from "@/libs/ui/TestField";
+import { showToast } from "@/libs/ui/Toast";
 
 export const CreateTask = () => {
   const [taskName, setTaskName] = useState("");
@@ -18,12 +19,16 @@ export const CreateTask = () => {
 
     const taskNameTrimmed = taskName.trim();
 
-    if (taskNameTrimmed === "") {
-      return;
+    try {
+      await createTask(taskNameTrimmed);
+      setTaskName("");
+    } catch (error) {
+      if (error instanceof Error) {
+        showToast({
+          message: `Error creating task: ${error.message}`,
+        });
+      }
     }
-
-    await createTask(taskNameTrimmed);
-    setTaskName("");
   };
 
   return (
