@@ -1,10 +1,13 @@
 import { Clock, Play, TrashBin } from "@gravity-ui/icons";
 import { useId } from "react";
 
+import { Task as TaskModel } from "@/libs/api/tasks/model";
 import { Button } from "@/libs/ui/Button";
 import { Card } from "@/libs/ui/Card";
 
-export const Task = () => {
+type TaskProps = TaskModel;
+
+export const Task = ({ name }: TaskProps) => {
   const editTaskNameDescId = useId();
   const editTaskTimeDescId = useId();
 
@@ -18,7 +21,7 @@ export const Task = () => {
         className="flex-1 justify-start whitespace-normal min-h-fit"
         aria-describedby={editTaskNameDescId}
       >
-        Task name
+        {name}
       </Button>
       <span id={editTaskNameDescId} className="sr-only">
         Edit task name

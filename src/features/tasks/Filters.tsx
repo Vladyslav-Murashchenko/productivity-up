@@ -1,7 +1,8 @@
+import { Task } from "@/libs/api/tasks/model";
 import { Button } from "@/libs/ui/Button";
 import { ButtonGroup } from "@/libs/ui/ButtonGroup";
 
-export type Filter = "todo" | "done";
+export type Filter = Task["status"];
 
 type FiltersProps = {
   activeFilter: Filter;

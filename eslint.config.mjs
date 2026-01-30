@@ -1,6 +1,6 @@
-import { defineConfig, globalIgnores } from "eslint/config";
 import nextVitals from "eslint-config-next/core-web-vitals";
 import nextTs from "eslint-config-next/typescript";
+import { defineConfig, globalIgnores } from "eslint/config";
 
 const eslintConfig = defineConfig([
   ...nextVitals,
@@ -87,6 +87,23 @@ const eslintConfig = defineConfig([
               group: ["@/features/**", "@/shared-features/**", "@/app/**"],
               message:
                 "Libs cannot import from features, shared-features and app",
+            },
+          ],
+        },
+      ],
+    },
+  },
+  {
+    files: ["**/*"],
+    ignores: ["src/libs/api/**"],
+    rules: {
+      "no-restricted-imports": [
+        "error",
+        {
+          patterns: [
+            {
+              group: ["dexie", "dexie-react-hooks", "@/libs/api/_internal/**"],
+              message: "Can be used only in src/libs/api",
             },
           ],
         },

@@ -8,11 +8,11 @@ type ButtonProps = {
   isIconOnly?: boolean;
   variant?: "primary" | "secondary" | "tertiary" | "text";
   className?: string;
+  type?: "button" | "submit";
 };
 
 const customButtonVariants = tv({
   extend: buttonVariants,
-  base: "font-medium transition-all",
   variants: {
     variant: {
       text: "bg-transparent hover:opacity-80 p-0 text-base h-fit",

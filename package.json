@@ -11,6 +11,8 @@
   "dependencies": {
     "@heroui/react": "^3.0.0-beta.5",
     "@heroui/styles": "^3.0.0-beta.5",
+    "dexie": "^4.2.1",
+    "dexie-react-hooks": "^4.2.0",
     "next": "^16.1.6",
     "react": "19.2.3",
     "react-dom": "19.2.3"

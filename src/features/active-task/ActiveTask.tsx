@@ -8,6 +8,10 @@ import { Card } from "@/libs/ui/Card";
 export const ActiveTask = () => {
   const editTaskNameDescId = useId();
 
+  if (true) {
+    return null;
+  }
+
   return (
     <Card className="w-full bg-accent p-4 gap-2">
       <div className="min-w-0 flex-1 flex gap-2">
