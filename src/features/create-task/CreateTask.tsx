@@ -19,6 +19,10 @@ export const CreateTask = () => {
 
     const taskNameTrimmed = taskName.trim();
 
+    if (taskNameTrimmed === "") {
+      return;
+    }
+
     try {
       await createTask(taskNameTrimmed);
       setTaskName("");
@@ -34,7 +38,7 @@ export const CreateTask = () => {
   return (
     <Card className="p-6">
       <form
-        onSubmit={handleTaskCreate}
+        onSubmit={(e) => void handleTaskCreate(e)}
         className="flex flex-row items-end gap-3"
       >
         <TextField className="flex-1">
