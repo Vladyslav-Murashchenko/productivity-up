@@ -1,5 +1,4 @@
 import { useTasks } from "@/libs/api/tasks/useTasks";
-import { Spinner } from "@/libs/ui/Spinner";
 
 import { Filter } from "./Filters";
 import { Task } from "./task";
@@ -12,7 +11,7 @@ export const TaskList = ({ activeFilter }: TaskListProps) => {
   const { tasks } = useTasks({ status: activeFilter });
 
   if (!tasks) {
-    return <Spinner />;
+    return null;
   }
 
   if (tasks.length === 0) {
