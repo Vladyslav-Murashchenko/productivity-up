@@ -7,20 +7,18 @@ export type Filter = Task["status"];
 type FiltersProps = {
   activeFilter: Filter;
   onActiveFilterChange: (filter: Filter) => void;
-  className?: string;
 };
 
 export const Filters = ({
   activeFilter,
   onActiveFilterChange,
-  className,
 }: FiltersProps) => {
   const getFilterVariant = (filter: Filter) => {
     return activeFilter === filter ? "secondary" : "tertiary";
   };
 
   return (
-    <ButtonGroup className={className}>
+    <ButtonGroup className="justify-start">
       <Button
         variant={getFilterVariant("todo")}
         onClick={() => onActiveFilterChange("todo")}

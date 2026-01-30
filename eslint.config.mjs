@@ -61,6 +61,10 @@ const eslintConfig = defineConfig([
               message:
                 'Features cannot import directly from "@heroui/*". Use @/libs/ui instead.',
             },
+            {
+              group: ["dexie", "dexie-react-hooks", "@/libs/api/_internal/**"],
+              message: "Can be used only in src/libs/api",
+            },
           ],
         },
       ],
@@ -83,6 +87,10 @@ const eslintConfig = defineConfig([
               message:
                 'App cannot import directly from "@heroui/*". Use @/libs/ui instead.',
             },
+            {
+              group: ["dexie", "dexie-react-hooks", "@/libs/api/_internal/**"],
+              message: "Can be used only in src/libs/api",
+            },
           ],
         },
       ],
@@ -99,23 +107,6 @@ const eslintConfig = defineConfig([
               group: ["@/features/**", "@/shared-features/**", "@/app/**"],
               message:
                 "Libs cannot import from features, shared-features and app",
-            },
-          ],
-        },
-      ],
-    },
-  },
-  {
-    files: ["**/*"],
-    ignores: ["src/libs/api/**"],
-    rules: {
-      "no-restricted-imports": [
-        "error",
-        {
-          patterns: [
-            {
-              group: ["dexie", "dexie-react-hooks", "@/libs/api/_internal/**"],
-              message: "Can be used only in src/libs/api",
             },
           ],
         },
