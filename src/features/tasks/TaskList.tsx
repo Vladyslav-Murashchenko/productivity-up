@@ -2,7 +2,7 @@ import { useTasks } from "@/libs/api/tasks/useTasks";
 import { Spinner } from "@/libs/ui/Spinner";
 
 import { Filter } from "./Filters";
-import { Task } from "./Task";
+import { Task } from "./task";
 
 type TaskListProps = {
   activeFilter: Filter;
