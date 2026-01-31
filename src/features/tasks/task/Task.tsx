@@ -1,8 +1,9 @@
-import { Clock, Play } from "@gravity-ui/icons";
+import { ArrowRotateLeft, Clock, Play } from "@gravity-ui/icons";
 import { useId } from "react";
 
 import { startTask } from "@/libs/api/active-task/startTask";
 import { Task as TaskModel } from "@/libs/api/tasks/model";
+import { reopenTask } from "@/libs/api/tasks/reopenTask";
 import { useTaskDuration } from "@/libs/api/time-intervals/useTaskDuration";
 import { Button } from "@/libs/ui/Button";
 import { Card } from "@/libs/ui/Card";
@@ -13,7 +14,7 @@ import { DeleteTask } from "./DeleteTask";
 
 type TaskProps = TaskModel;
 
-export const Task = ({ id, name }: TaskProps) => {
+export const Task = ({ id, name, status }: TaskProps) => {
   const editTaskNameDescId = useId();
   const editTaskTimeDescId = useId();
 
@@ -24,20 +25,39 @@ export const Task = ({ id, name }: TaskProps) => {
     });
   };
 
+  const handleTaskReopen = () => {
+    void withErrorToast({
+      fn: () => reopenTask(id),
+      errorPrefix: "Failed to reopen task",
+    });
+  };
+
   const { taskDuration } = useTaskDuration({
     taskId: id,
   });
 
   return (
     <Card className="flex flex-row items-center">
-      <Button
-        onClick={handleTaskStart}
-        variant="secondary"
-        isIconOnly
-        aria-label="Start task"
-      >
-        <Play />
-      </Button>
+      {status === "todo" && (
+        <Button
+          onClick={handleTaskStart}
+          variant="secondary"
+          isIconOnly
+          aria-label="Start task"
+        >
+          <Play />
+        </Button>
+      )}
+      {status === "done" && (
+        <Button
+          onClick={handleTaskReopen}
+          variant="secondary"
+          isIconOnly
+          aria-label="Reopen task"
+        >
+          <ArrowRotateLeft />
+        </Button>
+      )}
       <Button
         variant="text"
         className="flex-1 justify-start whitespace-normal min-h-fit"

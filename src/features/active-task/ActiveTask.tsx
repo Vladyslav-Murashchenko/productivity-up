@@ -2,7 +2,8 @@
 import { Check, Pause } from "@gravity-ui/icons";
 import { useId } from "react";
 
-import { pauseActiveTask } from "@/libs/api/active-task/pauseTask";
+import { completeActiveTask } from "@/libs/api/active-task/completeActiveTask";
+import { pauseActiveTask } from "@/libs/api/active-task/pauseActiveTask";
 import { useActiveTaskState } from "@/libs/api/active-task/useActiveTaskState";
 import { useTask } from "@/libs/api/tasks/useTask";
 import { Button } from "@/libs/ui/Button";
@@ -21,7 +22,14 @@ export const ActiveTask = () => {
   const handlePause = () => {
     void withErrorToast({
       fn: pauseActiveTask,
-      errorPrefix: "Failed to pause active task",
+      errorPrefix: "Failed to pause task",
+    });
+  };
+
+  const handleComplete = () => {
+    void withErrorToast({
+      fn: completeActiveTask,
+      errorPrefix: "Failed to complete task",
     });
   };
 
@@ -64,6 +72,7 @@ export const ActiveTask = () => {
         <Button
           size="lg"
           className="flex-1 bg-foreground text-accent hover:bg-gray-100"
+          onClick={handleComplete}
         >
           <Check />
           Complete
