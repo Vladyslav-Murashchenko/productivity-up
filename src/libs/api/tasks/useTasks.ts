@@ -8,8 +8,8 @@ type UseTasksParams = {
 };
 
 export const useTasks = ({ status = "todo" }: UseTasksParams) => {
-  const tasks = useLiveQuery(async () => {
-    return await db.tasks.where("status").equals(status).toArray();
+  const tasks = useLiveQuery(() => {
+    return db.tasks.where("status").equals(status).toArray();
   }, [status]);
 
   return { tasks };

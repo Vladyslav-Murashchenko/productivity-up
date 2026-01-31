@@ -1,20 +1,21 @@
 "use client";
 import { useId, useState } from "react";
 
+import { useActiveTaskState } from "@/libs/api/active-task/useActiveTaskState";
 import { createTask } from "@/libs/api/tasks/createTask";
+import { withErrorToast } from "@/libs/helpers/withErrorToast";
 import { Button } from "@/libs/ui/Button";
 import { Card } from "@/libs/ui/Card";
 import { Input } from "@/libs/ui/Input";
 import { Label } from "@/libs/ui/Label";
 import { TextField } from "@/libs/ui/TestField";
-import { showToast } from "@/libs/ui/Toast";
 
 export const CreateTask = () => {
   const [taskName, setTaskName] = useState("");
 
   const taskNameInputId = useId();
 
-  const handleTaskCreate = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleTaskCreate = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const taskNameTrimmed = taskName.trim();
@@ -23,22 +24,25 @@ export const CreateTask = () => {
       return;
     }
 
-    try {
-      await createTask(taskNameTrimmed);
-      setTaskName("");
-    } catch (error) {
-      if (error instanceof Error) {
-        showToast({
-          message: `Error creating task: ${error.message}`,
-        });
-      }
-    }
+    void withErrorToast({
+      fn: async () => {
+        await createTask(taskNameTrimmed);
+        setTaskName("");
+      },
+      errorPrefix: "Failed to create task",
+    });
   };
+
+  const { activeTaskState } = useActiveTaskState();
+
+  if (activeTaskState) {
+    return null;
+  }
 
   return (
     <Card className="p-6">
       <form
-        onSubmit={(e) => void handleTaskCreate(e)}
+        onSubmit={handleTaskCreate}
         className="flex flex-row items-end gap-3"
       >
         <TextField className="flex-1">

@@ -1,7 +1,9 @@
 import { Task } from "../tasks/model";
 
-export type ActiveTask = {
-  primaryKey: "singleton";
-  id: Task["id"];
-  startDate: Date;
+export const ACTIVE_TASK_STATE_PRIMARY_KEY = "singleton";
+
+export type ActiveTaskState = {
+  primaryKey: typeof ACTIVE_TASK_STATE_PRIMARY_KEY;
+  taskId: Task["id"];
+  startTime: Date;
 };

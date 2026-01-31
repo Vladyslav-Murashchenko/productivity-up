@@ -2,25 +2,20 @@ import { TrashBin } from "@gravity-ui/icons";
 
 import { deleteTask } from "@/libs/api/tasks/deleteTask";
 import { Task } from "@/libs/api/tasks/model";
+import { withErrorToast } from "@/libs/helpers/withErrorToast";
 import { Button } from "@/libs/ui/Button";
 import { ConfirmModal } from "@/libs/ui/ConfirmModal";
-import { showToast } from "@/libs/ui/Toast";
 
 type DeleteTaskProps = {
   id: Task["id"];
 };
 
 export const DeleteTask = ({ id }: DeleteTaskProps) => {
-  const handleTaskDelete = async () => {
-    try {
-      await deleteTask(id);
-    } catch (error) {
-      if (error instanceof Error) {
-        showToast({
-          message: `Error deleting task: ${error.message}`,
-        });
-      }
-    }
+  const handleTaskDelete = () => {
+    void withErrorToast({
+      fn: () => deleteTask(id),
+      errorPrefix: "Failed to delete task",
+    });
   };
 
   return (
@@ -28,7 +23,7 @@ export const DeleteTask = ({ id }: DeleteTaskProps) => {
       heading="Are you sure you want to delete task?"
       body="This action cannot be undone."
       confirmText="Yes, delete"
-      onConfirm={() => void handleTaskDelete()}
+      onConfirm={handleTaskDelete}
     >
       <Button
         variant="tertiary"

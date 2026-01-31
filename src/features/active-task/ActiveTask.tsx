@@ -2,13 +2,30 @@
 import { Check, Pause } from "@gravity-ui/icons";
 import { useId } from "react";
 
+import { pauseActiveTask } from "@/libs/api/active-task/pauseTask";
+import { useActiveTaskState } from "@/libs/api/active-task/useActiveTaskState";
+import { useTask } from "@/libs/api/tasks/useTask";
+import { withErrorToast } from "@/libs/helpers/withErrorToast";
 import { Button } from "@/libs/ui/Button";
 import { Card } from "@/libs/ui/Card";
+
+import { Timer } from "./Timer";
 
 export const ActiveTask = () => {
   const editTaskNameDescId = useId();
 
-  if (true) {
+  const { activeTaskState } = useActiveTaskState();
+
+  const { task: activeTask } = useTask(activeTaskState?.taskId);
+
+  const handlePause = () => {
+    void withErrorToast({
+      fn: pauseActiveTask,
+      errorPrefix: "Failed to pause active task",
+    });
+  };
+
+  if (!activeTaskState || !activeTask) {
     return null;
   }
 
@@ -22,21 +39,24 @@ export const ActiveTask = () => {
             className="w-full justify-start"
             aria-describedby={editTaskNameDescId}
           >
-            <span className="flex-1 truncate text-left">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque,
-              suscipit! rewrew rewreww errwe rewrew
-            </span>
+            <span className="flex-1 truncate text-left">{activeTask.name}</span>
           </Button>
           <span id={editTaskNameDescId} className="sr-only">
             Edit active task name
           </span>
         </div>
-        <div className="text-3xl flex items-end">2h 32m 4s</div>
+        <div className="text-3xl flex items-end">
+          <Timer
+            taskId={activeTaskState.taskId}
+            startTime={activeTaskState.startTime}
+          />
+        </div>
       </div>
       <div className="flex gap-2 justify-center">
         <Button
           size="lg"
           className="flex-1 bg-[rgba(255,255,255,0.2)] hover:bg-[rgba(255,255,255,0.3)]"
+          onClick={handlePause}
         >
           <Pause />
           Pause
