@@ -1,4 +1,4 @@
-import { showToast } from "@/libs/ui/Toast";
+import { showToast } from "./showToast";
 
 type WithErrorToastParams<T> = {
   fn: () => Promise<T>;

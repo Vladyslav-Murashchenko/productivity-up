@@ -1,15 +1,9 @@
-type DurationProps = {
-  totalSeconds: number;
-};
-
-export const Duration = ({ totalSeconds }: DurationProps) => {
-  return <span>{formatDuration(totalSeconds)}</span>;
-};
-
+const MS_IN_SECOND = 1000;
 const SECONDS_IN_MINUTE = 60;
 const SECONDS_IN_HOUR = 60 * SECONDS_IN_MINUTE;
 
-export function formatDuration(totalSeconds: number): string {
+export function formatDuration(totalMs: number): string {
+  const totalSeconds = Math.floor(totalMs / MS_IN_SECOND);
   const hours = Math.floor(totalSeconds / SECONDS_IN_HOUR);
   const minutes = Math.floor(
     (totalSeconds % SECONDS_IN_HOUR) / SECONDS_IN_MINUTE,

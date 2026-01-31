@@ -3,19 +3,17 @@ import { useId } from "react";
 
 import { startTask } from "@/libs/api/active-task/startTask";
 import { Task as TaskModel } from "@/libs/api/tasks/model";
-import { useTaskTime } from "@/libs/api/time-intervals/useTaskTime";
-import { withErrorToast } from "@/libs/helpers/withErrorToast";
+import { useTaskDuration } from "@/libs/api/time-intervals/useTaskDuration";
 import { Button } from "@/libs/ui/Button";
 import { Card } from "@/libs/ui/Card";
-import { Duration } from "@/libs/ui/Duration";
+import { formatDuration } from "@/libs/ui/utils/formatDuration";
+import { withErrorToast } from "@/libs/ui/utils/withErrorToast";
 
 import { DeleteTask } from "./DeleteTask";
 
-type TaskProps = TaskModel & {
-  isActive: boolean;
-};
+type TaskProps = TaskModel;
 
-export const Task = ({ id, name, isActive }: TaskProps) => {
+export const Task = ({ id, name }: TaskProps) => {
   const editTaskNameDescId = useId();
   const editTaskTimeDescId = useId();
 
@@ -26,14 +24,9 @@ export const Task = ({ id, name, isActive }: TaskProps) => {
     });
   };
 
-  const { taskTime } = useTaskTime({
+  const { taskDuration } = useTaskDuration({
     taskId: id,
-    unit: "s",
   });
-
-  if (isActive) {
-    return null;
-  }
 
   return (
     <Card className="flex flex-row items-center">
@@ -55,14 +48,14 @@ export const Task = ({ id, name, isActive }: TaskProps) => {
       <span id={editTaskNameDescId} className="sr-only">
         Edit task name
       </span>
-      {taskTime !== undefined && (
+      {taskDuration !== undefined && (
         <Button
           variant="text"
           className="flex items-center gap-1 text-muted"
           aria-describedby={editTaskTimeDescId}
         >
           <Clock />
-          <Duration totalSeconds={taskTime} />
+          <span>{formatDuration(taskDuration)}</span>
         </Button>
       )}
       <span id={editTaskTimeDescId} className="sr-only">

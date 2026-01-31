@@ -3,12 +3,12 @@ import { useId, useState } from "react";
 
 import { useActiveTaskState } from "@/libs/api/active-task/useActiveTaskState";
 import { createTask } from "@/libs/api/tasks/createTask";
-import { withErrorToast } from "@/libs/helpers/withErrorToast";
 import { Button } from "@/libs/ui/Button";
 import { Card } from "@/libs/ui/Card";
 import { Input } from "@/libs/ui/Input";
 import { Label } from "@/libs/ui/Label";
 import { TextField } from "@/libs/ui/TestField";
+import { withErrorToast } from "@/libs/ui/utils/withErrorToast";
 
 export const CreateTask = () => {
   const [taskName, setTaskName] = useState("");

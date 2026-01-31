@@ -2,15 +2,13 @@ import { differenceInMilliseconds } from "date-fns";
 import { useEffect, useState } from "react";
 
 import { Task } from "@/libs/api/tasks/model";
-import { useTaskTime } from "@/libs/api/time-intervals/useTaskTime";
-import { Duration } from "@/libs/ui/Duration";
+import { useTaskDuration } from "@/libs/api/time-intervals/useTaskDuration";
+import { formatDuration } from "@/libs/ui/utils/formatDuration";
 
 type TimerProps = {
   startTime: Date;
   taskId: Task["id"];
 };
-
-const MS_IN_SECOND = 1000;
 
 export const Timer = ({ startTime, taskId }: TimerProps) => {
   const [now, setNow] = useState(() => new Date());
@@ -25,14 +23,13 @@ export const Timer = ({ startTime, taskId }: TimerProps) => {
     };
   }, []);
 
-  const { taskTime } = useTaskTime({ taskId });
+  const { taskDuration } = useTaskDuration({ taskId });
 
-  if (taskTime === undefined) {
+  if (taskDuration === undefined) {
     return null;
   }
 
-  const totalMs = taskTime + differenceInMilliseconds(now, startTime);
-  const totalSeconds = Math.floor(totalMs / MS_IN_SECOND);
+  const totalMs = taskDuration + differenceInMilliseconds(now, startTime);
 
-  return <Duration totalSeconds={totalSeconds} />;
+  return <span>{formatDuration(totalMs)}</span>;
 };

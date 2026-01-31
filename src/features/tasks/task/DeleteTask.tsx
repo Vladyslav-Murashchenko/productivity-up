@@ -2,9 +2,9 @@ import { TrashBin } from "@gravity-ui/icons";
 
 import { deleteTask } from "@/libs/api/tasks/deleteTask";
 import { Task } from "@/libs/api/tasks/model";
-import { withErrorToast } from "@/libs/helpers/withErrorToast";
 import { Button } from "@/libs/ui/Button";
 import { ConfirmModal } from "@/libs/ui/ConfirmModal";
+import { withErrorToast } from "@/libs/ui/utils/withErrorToast";
 
 type DeleteTaskProps = {
   id: Task["id"];

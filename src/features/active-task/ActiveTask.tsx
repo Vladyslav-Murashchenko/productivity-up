@@ -5,9 +5,9 @@ import { useId } from "react";
 import { pauseActiveTask } from "@/libs/api/active-task/pauseTask";
 import { useActiveTaskState } from "@/libs/api/active-task/useActiveTaskState";
 import { useTask } from "@/libs/api/tasks/useTask";
-import { withErrorToast } from "@/libs/helpers/withErrorToast";
 import { Button } from "@/libs/ui/Button";
 import { Card } from "@/libs/ui/Card";
+import { withErrorToast } from "@/libs/ui/utils/withErrorToast";
 
 import { Timer } from "./Timer";
 
