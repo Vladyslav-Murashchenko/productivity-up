@@ -24,7 +24,7 @@ export const TaskList = ({ activeFilter }: TaskListProps) => {
 
   return (
     <ul className="flex flex-col gap-3">
-      {tasks.map((task) => (
+      {tasks.toReversed().map((task) => (
         <li
           key={task.id}
           className={cn(activeTaskState?.taskId === task.id && "hidden")}
