@@ -1,6 +1,5 @@
 "use client";
 import { Check, Pause } from "@gravity-ui/icons";
-import { useId } from "react";
 
 import { completeActiveTask } from "@/libs/api/active-task/completeActiveTask";
 import { pauseActiveTask } from "@/libs/api/active-task/pauseActiveTask";
@@ -10,11 +9,10 @@ import { Button } from "@/libs/ui/Button";
 import { Card } from "@/libs/ui/Card";
 import { withErrorToast } from "@/libs/ui/utils/withErrorToast";
 
+import { TaskName } from "./TaskName";
 import { Timer } from "./Timer";
 
 export const ActiveTask = () => {
-  const editTaskNameDescId = useId();
-
   const { activeTaskState } = useActiveTaskState();
 
   const { task: activeTask } = useTask(activeTaskState?.taskId);
@@ -42,22 +40,10 @@ export const ActiveTask = () => {
       <div className="min-w-0 flex-1 flex gap-2">
         <div className="flex flex-col min-w-0 flex-1">
           <h2 className="text-xs opacity-80">Active Task</h2>
-          <Button
-            variant="text"
-            className="w-full justify-start"
-            aria-describedby={editTaskNameDescId}
-          >
-            <span className="flex-1 truncate text-left">{activeTask.name}</span>
-          </Button>
-          <span id={editTaskNameDescId} className="sr-only">
-            Edit active task name
-          </span>
+          <TaskName taskId={activeTask.id} name={activeTask.name} />
         </div>
-        <div className="text-3xl flex items-end">
-          <Timer
-            taskId={activeTaskState.taskId}
-            startTime={activeTaskState.startTime}
-          />
+        <div className="flex items-end">
+          <Timer taskId={activeTask.id} startTime={activeTaskState.startTime} />
         </div>
       </div>
       <div className="flex gap-2 justify-center">

@@ -11,11 +11,11 @@ import { formatDuration } from "@/libs/ui/utils/formatDuration";
 import { withErrorToast } from "@/libs/ui/utils/withErrorToast";
 
 import { DeleteTask } from "./DeleteTask";
+import { TaskName } from "./TaskName";
 
 type TaskProps = TaskModel;
 
 export const Task = ({ id, name, status }: TaskProps) => {
-  const editTaskNameDescId = useId();
   const editTaskTimeDescId = useId();
 
   const handleTaskStart = () => {
@@ -58,16 +58,7 @@ export const Task = ({ id, name, status }: TaskProps) => {
           <ArrowRotateLeft />
         </Button>
       )}
-      <Button
-        variant="text"
-        className="flex-1 justify-start whitespace-normal min-h-fit"
-        aria-describedby={editTaskNameDescId}
-      >
-        {name}
-      </Button>
-      <span id={editTaskNameDescId} className="sr-only">
-        Edit task name
-      </span>
+      <TaskName taskId={id} name={name} />
       {taskDuration !== undefined && (
         <Button
           variant="text"

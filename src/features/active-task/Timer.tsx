@@ -31,5 +31,5 @@ export const Timer = ({ startTime, taskId }: TimerProps) => {
 
   const totalMs = taskDuration + differenceInMilliseconds(now, startTime);
 
-  return <span>{formatDuration(totalMs)}</span>;
+  return <span className="text-3xl">{formatDuration(totalMs)}</span>;
 };
