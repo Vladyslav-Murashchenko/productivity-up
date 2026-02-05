@@ -6,7 +6,7 @@ import { deleteTimeInterval } from "@/libs/api/time-intervals/deleteTimeInterval
 import { TimeInterval as TimeIntervalModel } from "@/libs/api/time-intervals/model";
 import { Button } from "@/libs/ui/Button";
 import { Card } from "@/libs/ui/Card";
-import { ConfirmModal } from "@/libs/ui/ConfirmModal";
+import { ConfirmModal } from "@/libs/ui/modal/ConfirmModal";
 import { formatDuration } from "@/libs/ui/utils/formatDuration";
 import { withErrorToast } from "@/libs/ui/utils/withErrorToast";
 

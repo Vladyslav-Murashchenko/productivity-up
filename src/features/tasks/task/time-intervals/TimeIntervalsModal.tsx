@@ -1,5 +1,5 @@
 import { Task } from "@/libs/api/tasks/model";
-import { Modal } from "@/libs/ui/Modal";
+import { Modal } from "@/libs/ui/modal/Modal";
 
 import { TimeIntervals } from "./TimeIntervals";
 

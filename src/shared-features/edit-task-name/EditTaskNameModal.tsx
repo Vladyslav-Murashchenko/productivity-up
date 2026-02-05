@@ -1,7 +1,7 @@
 import { useId } from "react";
 
 import { Task } from "@/libs/api/tasks/model";
-import { FormModal } from "@/libs/ui/FormModal";
+import { FormModal } from "@/libs/ui/modal/FormModal";
 
 import { EditTaskNameForm } from "./EditTaskNameForm";
 
