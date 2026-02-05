@@ -15,7 +15,7 @@ export const completeActiveTask = async () => {
       );
 
       if (!activeTaskState) {
-        return;
+        throw new Error("No active task to complete");
       }
 
       await db.timeIntervals.add({

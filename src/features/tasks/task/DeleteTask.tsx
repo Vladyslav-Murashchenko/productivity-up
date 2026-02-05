@@ -7,13 +7,13 @@ import { ConfirmModal } from "@/libs/ui/ConfirmModal";
 import { withErrorToast } from "@/libs/ui/utils/withErrorToast";
 
 type DeleteTaskProps = {
-  id: Task["id"];
+  taskId: Task["id"];
 };
 
-export const DeleteTask = ({ id }: DeleteTaskProps) => {
+export const DeleteTask = ({ taskId }: DeleteTaskProps) => {
   const handleTaskDelete = () => {
     void withErrorToast({
-      fn: () => deleteTask(id),
+      fn: () => deleteTask(taskId),
       errorPrefix: "Failed to delete task",
     });
   };

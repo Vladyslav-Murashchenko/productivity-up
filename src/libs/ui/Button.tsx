@@ -9,6 +9,7 @@ type ButtonProps = {
   variant?: "primary" | "secondary" | "tertiary" | "text";
   className?: string;
   type?: "button" | "submit";
+  isDisabled?: boolean;
 };
 
 const customButtonVariants = tv({

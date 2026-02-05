@@ -10,7 +10,7 @@ export const pauseActiveTask = async () => {
     );
 
     if (!activeTaskState) {
-      return;
+      throw new Error("No active task to pause");
     }
 
     await db.timeIntervals.add({
