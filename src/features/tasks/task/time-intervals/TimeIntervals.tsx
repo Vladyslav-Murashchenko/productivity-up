@@ -48,7 +48,7 @@ export const TimeIntervals = ({ taskId }: TimeIntervalsProps) => {
   const sortedIntervals = sortByStartAsc(timeIntervals);
 
   return (
-    <ul className="flex flex-col gap-4 pt-4">
+    <ul className="flex flex-col gap-4 py-5">
       {sortedIntervals.map((interval, i, intervals) => (
         <li className="flex flex-col gap-4 relative" key={interval.id}>
           {i === 0 && (
