@@ -1,30 +1,33 @@
 import { Check, Xmark } from "@gravity-ui/icons";
 import { useState } from "react";
 
-import { TimeInterval } from "@/libs/api/time-intervals/model";
-import { updateTimeInterval } from "@/libs/api/time-intervals/updateTimeInterval";
 import { Button } from "@/libs/ui/Button";
 import { Card } from "@/libs/ui/Card";
 import { DateTimePicker } from "@/libs/ui/DateTimePicker";
-import { withErrorToast } from "@/libs/ui/utils/withErrorToast";
 
 import { ValidationError, validateInterval } from "./validateInterval";
 
 type IntervalFormProps = {
-  interval: TimeInterval;
+  initialStart: Date;
+  initialEnd: Date;
   prevIntervalEnd?: Date;
   nextIntervalStart?: Date;
-  onEditFinish: () => void;
+  onSave: (start: Date, end: Date) => void;
+  onCancel: () => void;
+  submitLabel: string;
 };
 
-export const EditInterval = ({
-  interval,
+export const IntervalForm = ({
+  initialStart,
+  initialEnd,
   prevIntervalEnd,
   nextIntervalStart,
-  onEditFinish,
+  onSave,
+  onCancel,
+  submitLabel,
 }: IntervalFormProps) => {
-  const [start, setStart] = useState(interval.start);
-  const [end, setEnd] = useState(interval.end);
+  const [start, setStart] = useState(initialStart);
+  const [end, setEnd] = useState(initialEnd);
 
   const [error, setError] = useState<ValidationError>({});
 
@@ -38,7 +41,7 @@ export const EditInterval = ({
     setError(({ end: _, ...restError }) => restError);
   };
 
-  const handleSave = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     const validationError = validateInterval({
@@ -46,6 +49,7 @@ export const EditInterval = ({
       nextIntervalStart,
       start,
       end,
+      now: new Date(),
     });
 
     if (Object.keys(validationError).length > 0) {
@@ -53,23 +57,15 @@ export const EditInterval = ({
       return;
     }
 
-    void withErrorToast({
-      fn: async () => {
-        await updateTimeInterval({
-          id: interval.id,
-          start,
-          end,
-        });
-
-        onEditFinish();
-      },
-      errorPrefix: "Failed to update time interval",
-    });
+    onSave(start, end);
   };
 
   return (
     <Card variant="secondary" className="p-4">
-      <form onSubmit={handleSave} className="flex flex-row items-center gap-6">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-row items-center gap-6"
+      >
         <div className="flex flex-col gap-1">
           <DateTimePicker
             className="flex-row justify-start items-center"
@@ -92,12 +88,18 @@ export const EditInterval = ({
           <Button
             variant="secondary"
             isIconOnly
-            onClick={onEditFinish}
+            onClick={onCancel}
             aria-label="Cancel"
+            type="button"
           >
             <Xmark />
           </Button>
-          <Button variant="primary" isIconOnly aria-label="Save" type="submit">
+          <Button
+            variant="primary"
+            isIconOnly
+            aria-label={submitLabel}
+            type="submit"
+          >
             <Check />
           </Button>
         </div>

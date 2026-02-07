@@ -10,7 +10,7 @@ import { ConfirmModal } from "@/libs/ui/modal/ConfirmModal";
 import { formatDuration } from "@/libs/ui/utils/formatDuration";
 import { withErrorToast } from "@/libs/ui/utils/withErrorToast";
 
-import { EditInterval } from "./EditInterval";
+import { EditInterval } from "./interval-forms";
 
 type TimeIntervalProps = {
   interval: TimeIntervalModel;

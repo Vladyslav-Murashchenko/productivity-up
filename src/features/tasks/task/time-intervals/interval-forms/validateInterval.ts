@@ -8,6 +8,7 @@ type ValidateIntervalParams = {
   nextIntervalStart?: Date;
   start: Date;
   end: Date;
+  now: Date;
 };
 
 export function validateInterval({
@@ -15,6 +16,7 @@ export function validateInterval({
   nextIntervalStart,
   start,
   end,
+  now,
 }: ValidateIntervalParams): ValidationError {
   const validateStart = () => {
     if (start > end) {
@@ -36,6 +38,12 @@ export function validateInterval({
     if (nextIntervalStart && end > nextIntervalStart) {
       return {
         end: "End time cannot be after next interval start time",
+      };
+    }
+
+    if (end > now) {
+      return {
+        end: "End time cannot be in the future",
       };
     }
 

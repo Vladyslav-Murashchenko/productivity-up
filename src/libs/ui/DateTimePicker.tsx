@@ -10,7 +10,7 @@ import { Label } from "./Label";
 
 type DateTimePickerProps = {
   label?: string;
-  value: Date | null;
+  value?: Date;
   onChange: (date: Date) => void;
   errorMessage?: string | null;
   className?: string;

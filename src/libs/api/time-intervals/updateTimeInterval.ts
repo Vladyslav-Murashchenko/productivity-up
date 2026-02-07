@@ -12,6 +12,7 @@ export const updateTimeInterval = async ({
   start,
   end,
 }: UpdateTimeIntervalParams): Promise<void> => {
+  const now = new Date();
   const interval = await db.timeIntervals.get(id);
 
   if (!interval) {
@@ -20,6 +21,10 @@ export const updateTimeInterval = async ({
 
   if (start > end) {
     throw new Error("Start time must be before end time");
+  }
+
+  if (end > now) {
+    throw new Error("End time cannot be in the future");
   }
 
   await db.timeIntervals.update(id, { start, end });
