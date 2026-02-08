@@ -97,16 +97,43 @@ const eslintConfig = defineConfig([
     },
   },
   {
-    files: ["src/libs/**"],
+    files: ["src/libs/ui/**"],
     rules: {
       "no-restricted-imports": [
         "error",
         {
           patterns: [
             {
-              group: ["@/features/**", "@/shared-features/**", "@/app/**"],
+              group: [
+                "@/features/**",
+                "@/shared-features/**",
+                "@/app/**",
+                "@/libs/api/**",
+              ],
               message:
-                "Libs cannot import from features, shared-features and app",
+                "UI cannot import from features, shared-features, libs/api and app",
+            },
+          ],
+        },
+      ],
+    },
+  },
+  {
+    files: ["src/libs/api/**"],
+    rules: {
+      "no-restricted-imports": [
+        "error",
+        {
+          patterns: [
+            {
+              group: [
+                "@/features/**",
+                "@/shared-features/**",
+                "@/app/**",
+                "@/libs/ui/**",
+              ],
+              message:
+                "API cannot import from features, shared-features, libs/ui and app",
             },
           ],
         },
