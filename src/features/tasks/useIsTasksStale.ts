@@ -9,6 +9,7 @@ import { Filter } from "./Filters";
  * when the user switches between filters, the tasks list will be stale for a moment because of the way dexie works
  * This staleness is usually ok but in case, when one list is empty, the user will see incorrect empty message for a moment
  * This leads to blinking effect which I don't want to have in UI.
+ * Note: if case like this happens again consider migrate from dexie useLiveQuery to react-query
  */
 export const useIsTasksStale = (filter: Filter, tasks?: Task[]) => {
   const [isStale, setIsStale] = useState(false);
