@@ -18,8 +18,16 @@ export const TaskList = ({ activeFilter }: TaskListProps) => {
     return null;
   }
 
-  if (tasks.length === 0) {
-    return <p className="text-muted">No tasks available</p>;
+  if (tasks.length === 0 && activeFilter === "todo") {
+    return (
+      <p className="text-muted">
+        Your to-do list is empty. Add your first task
+      </p>
+    );
+  }
+
+  if (tasks.length === 0 && activeFilter === "done") {
+    return <p className="text-muted">No tasks completed yet</p>;
   }
 
   return (

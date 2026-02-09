@@ -23,7 +23,7 @@ export const Filters = ({
         variant={getFilterVariant("todo")}
         onClick={() => onActiveFilterChange("todo")}
       >
-        Todo
+        To-do
       </Button>
       <Button
         variant={getFilterVariant("done")}
