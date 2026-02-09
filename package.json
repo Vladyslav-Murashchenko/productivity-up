@@ -3,13 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "next dev --turbo",
+    "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint",
     "test": "vitest"
   },
   "dependencies": {
+    "@ducanh2912/next-pwa": "^10.2.9",
     "@heroui/react": "^3.0.0-beta.5",
     "@heroui/styles": "^3.0.0-beta.5",
     "date-fns": "^4.1.0",

@@ -1,4 +1,3 @@
-"use client";
 import { Check, Pause } from "@gravity-ui/icons";
 
 import { completeActiveTask } from "@/libs/api/active-task/completeActiveTask";

@@ -41,3 +41,7 @@ yarn-error.log*
 next-env.d.ts
 
 .cursor
+
+# PWA
+/public/sw.js
+/public/workbox-*.js

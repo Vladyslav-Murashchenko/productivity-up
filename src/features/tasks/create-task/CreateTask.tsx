@@ -1,4 +1,3 @@
-"use client";
 import { useId, useState } from "react";
 
 import { useActiveTaskState } from "@/libs/api/active-task/useActiveTaskState";
