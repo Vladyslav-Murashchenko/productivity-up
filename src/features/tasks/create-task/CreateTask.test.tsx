@@ -7,9 +7,9 @@ import { CreateTask } from "./CreateTask";
 vi.mock("@/libs/api/active-task/useActiveTaskState");
 vi.mock("@/libs/api/tasks/createTask");
 
-const handleCreateSuccess = vi.fn();
+const onCreateSuccess = vi.fn();
 const renderCreateTask = () =>
-  render(<CreateTask onCreateSuccess={handleCreateSuccess} />);
+  render(<CreateTask onCreateSuccess={onCreateSuccess} />);
 
 describe("CreateTask", () => {
   beforeEach(async () => {
@@ -72,6 +72,18 @@ describe("CreateTask", () => {
     await user.click(screen.getByRole("button", { name: /create/i }));
 
     expect(createTask).toHaveBeenCalledWith("Write tests");
+  });
+
+  it("calls onCreateSuccess callback after successful task creation", async () => {
+    const user = userEvent.setup();
+
+    renderCreateTask();
+
+    const input = screen.getByPlaceholderText("Enter a task...");
+    await user.type(input, "Write tests");
+    await user.click(screen.getByRole("button", { name: /create/i }));
+
+    expect(onCreateSuccess).toHaveBeenCalledOnce();
   });
 
   it("does not create task when input is empty", async () => {
