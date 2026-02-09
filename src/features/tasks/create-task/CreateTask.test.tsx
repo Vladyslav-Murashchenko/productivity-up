@@ -6,9 +6,10 @@ import { CreateTask } from "./CreateTask";
 
 vi.mock("@/libs/api/active-task/useActiveTaskState");
 vi.mock("@/libs/api/tasks/createTask");
-vi.mock("@/libs/ui/utils/withErrorToast");
 
-const mockHandleCreateSuccess = vi.fn();
+const handleCreateSuccess = vi.fn();
+const renderCreateTask = () =>
+  render(<CreateTask onCreateSuccess={handleCreateSuccess} />);
 
 describe("CreateTask", () => {
   beforeEach(async () => {
@@ -19,13 +20,10 @@ describe("CreateTask", () => {
     vi.mocked(useActiveTaskState).mockReturnValue({
       activeTaskState: undefined,
     });
-
-    const { withErrorToast } = await import("@/libs/ui/utils/withErrorToast");
-    vi.mocked(withErrorToast).mockImplementation(({ fn }) => fn());
   });
 
   it("renders task creation form", () => {
-    render(<CreateTask onCreateSuccess={mockHandleCreateSuccess} />);
+    renderCreateTask();
 
     expect(screen.getByText("What would you like to focus on?")).toBeDefined();
     expect(screen.getByPlaceholderText("Enter a task...")).toBeInTheDocument();
@@ -34,7 +32,7 @@ describe("CreateTask", () => {
 
   it("updates input value when user types", async () => {
     const user = userEvent.setup();
-    render(<CreateTask onCreateSuccess={mockHandleCreateSuccess} />);
+    renderCreateTask();
 
     const input = screen.getByPlaceholderText("Enter a task...");
 
@@ -49,7 +47,7 @@ describe("CreateTask", () => {
       await import("@/libs/api/tasks/createTask"),
     );
 
-    render(<CreateTask onCreateSuccess={mockHandleCreateSuccess} />);
+    renderCreateTask();
 
     const input = screen.getByPlaceholderText("Enter a task...");
     const submitButton = screen.getByRole("button", { name: /create/i });
@@ -67,7 +65,7 @@ describe("CreateTask", () => {
       await import("@/libs/api/tasks/createTask"),
     );
 
-    render(<CreateTask onCreateSuccess={mockHandleCreateSuccess} />);
+    renderCreateTask();
 
     const input = screen.getByPlaceholderText("Enter a task...");
     await user.type(input, "  Write tests  ");
@@ -82,7 +80,7 @@ describe("CreateTask", () => {
       await import("@/libs/api/tasks/createTask"),
     );
 
-    render(<CreateTask onCreateSuccess={mockHandleCreateSuccess} />);
+    renderCreateTask();
 
     const submitButton = screen.getByRole("button", { name: /create/i });
     await user.click(submitButton);
@@ -96,7 +94,7 @@ describe("CreateTask", () => {
       await import("@/libs/api/tasks/createTask"),
     );
 
-    render(<CreateTask onCreateSuccess={mockHandleCreateSuccess} />);
+    renderCreateTask();
 
     const input = screen.getByPlaceholderText("Enter a task...");
     await user.type(input, "  ");
@@ -118,7 +116,7 @@ describe("CreateTask", () => {
       },
     });
 
-    render(<CreateTask onCreateSuccess={mockHandleCreateSuccess} />);
+    renderCreateTask();
 
     expect(
       screen.queryByPlaceholderText("Enter a task..."),
