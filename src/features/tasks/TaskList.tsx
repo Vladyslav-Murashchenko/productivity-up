@@ -4,6 +4,7 @@ import { cn } from "@/libs/ui/utils/cn";
 
 import { Filter } from "./Filters";
 import { Task } from "./task";
+import { useIsTasksStale } from "./useIsTasksStale";
 
 type TaskListProps = {
   activeFilter: Filter;
@@ -14,7 +15,9 @@ export const TaskList = ({ activeFilter }: TaskListProps) => {
 
   const { activeTaskState } = useActiveTaskState();
 
-  if (!tasks) {
+  const isTasksStale = useIsTasksStale(activeFilter, tasks);
+
+  if (!tasks || isTasksStale) {
     return null;
   }
 
