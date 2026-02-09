@@ -18,7 +18,7 @@ export const useTaskDuration = ({ taskId }: UseTaskDurationParams) => {
 
     return timeIntervals
       .map((interval) => differenceInMilliseconds(interval.end, interval.start))
-      .reduce((acc, seconds) => acc + seconds, 0);
+      .reduce((acc, ms) => acc + ms, 0);
   }, [timeIntervals]);
 
   return { taskDuration };
