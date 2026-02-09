@@ -10,7 +10,11 @@ import { Label } from "@/libs/ui/Label";
 import { TextField } from "@/libs/ui/TextField";
 import { withErrorToast } from "@/libs/ui/utils/withErrorToast";
 
-export const CreateTask = () => {
+type CreateTaskProps = {
+  onCreateSuccess: () => void;
+};
+
+export const CreateTask = ({ onCreateSuccess }: CreateTaskProps) => {
   const [taskName, setTaskName] = useState("");
 
   const taskNameInputId = useId();
@@ -28,6 +32,7 @@ export const CreateTask = () => {
       fn: async () => {
         await createTask(taskNameTrimmed);
         setTaskName("");
+        onCreateSuccess();
       },
       errorPrefix: "Failed to create task",
     });

@@ -1,5 +1,3 @@
-import { ActiveTask } from "@/features/active-task";
-import { CreateTask } from "@/features/create-task";
 import { Tasks } from "@/features/tasks";
 
 export default function Home() {
@@ -10,10 +8,6 @@ export default function Home() {
         <p className="text-muted">Focus on one task at a time</p>
       </header>
       <main className="flex flex-col gap-6">
-        <div>
-          <CreateTask />
-          <ActiveTask />
-        </div>
         <Tasks />
       </main>
     </div>
