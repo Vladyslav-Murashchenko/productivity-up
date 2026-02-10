@@ -1,6 +1,7 @@
 # Features
 
 This folder contains the main building blocks of the application - application features.
+The main goal of the feature - is to compose `ui`, `api`, other libs into something meaningful for business.
 
 ## Structure
 
@@ -11,19 +12,20 @@ This folder contains the main building blocks of the application - application f
 
 ## Import Rules
 
-- **No sibling feature imports allowed**: Features cannot import other sibling features (e.g., `feature-a` cannot import from `feature-b`)
-- **No parent imports**: Nested features cannot import from parent
-- **What features can import**:
-  - `shared-features` - reusable feature components/logic (only via root level `index.ts`)
-  - `libs` - internal libraries (UI/API/utilities)
 - **What features cannot import**:
   - `app` - Next.js routing structure
-  - Parent feature
+  - `sibling features` - features cannot import other sibling features (e.g., `feature-a` cannot import from `feature-b`)
+  - `parent feature` - feature cannot import from parent
+  - `private in child features` - feature cannot import files directly from child feature
+- **What features can import**:
+  - `public in child features` - feature parent can import from barrel of feature child
+  - `shared-features` - not recommended, but sometimes duplication cannot be avoided in other way. Read about shared-features in own README.md
+  - `libs` - internal libraries (UI/API). Read about libs in own README.md
 
 ## Nested Features
 
-- When creating a nested feature, some modules in the parent should become private (moved into the nested feature)
-- If nothing becomes private after creating a nested feature, the nested feature shouldn't exist
+- The most common reason to create nested feature is to hide details (some modules should be private)
+- avoid features as collections of modules where everything is public and exported from barrel
 - Nested features follow the same rules (barrel file, flat structure, no parent imports, etc.)
 
 ## Example Structure
