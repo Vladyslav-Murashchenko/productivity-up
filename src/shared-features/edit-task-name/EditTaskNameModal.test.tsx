@@ -1,5 +1,7 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+
+import { updateTaskName } from "@/libs/api/tasks/updateTaskName";
 
 import { EditTaskNameModal } from "./EditTaskNameModal";
 
@@ -22,6 +24,8 @@ const renderEditTaskNameModal = (props = {}) =>
 describe("EditTaskNameModal", () => {
   beforeEach(() => {
     vi.clearAllMocks();
+
+    vi.mocked(updateTaskName).mockResolvedValue();
   });
 
   it("renders modal with heading when open", () => {
@@ -45,9 +49,6 @@ describe("EditTaskNameModal", () => {
 
   it("should submit new name when form is submitted", async () => {
     const user = userEvent.setup();
-    const { updateTaskName } = vi.mocked(
-      await import("@/libs/api/tasks/updateTaskName"),
-    );
 
     renderEditTaskNameModal();
 
@@ -58,7 +59,9 @@ describe("EditTaskNameModal", () => {
     await user.type(input, "New Task Name");
     await user.click(submitButton);
 
-    expect(updateTaskName).toHaveBeenCalledWith(TASK_ID, "New Task Name");
+    await waitFor(() => {
+      expect(updateTaskName).toHaveBeenCalledWith(TASK_ID, "New Task Name");
+    });
   });
 
   it("should show error when submitting empty name", async () => {
@@ -71,7 +74,12 @@ describe("EditTaskNameModal", () => {
 
     await user.clear(input);
     await user.click(submitButton);
-    expect(screen.getByText("Task name cannot be empty")).toBeInTheDocument();
+
+    await waitFor(() => {
+      expect(screen.getByText("Task name cannot be empty")).toBeInTheDocument();
+    });
+
+    expect(updateTaskName).not.toHaveBeenCalled();
   });
 
   it("calls onOpenChange with false when form is submitted successfully", async () => {
@@ -82,6 +90,8 @@ describe("EditTaskNameModal", () => {
     const submitButton = screen.getByRole("button", { name: /save/i });
     await user.click(submitButton);
 
-    expect(onOpenChange).toHaveBeenCalledWith(false);
+    await waitFor(() => {
+      expect(onOpenChange).toHaveBeenCalledWith(false);
+    });
   });
 });

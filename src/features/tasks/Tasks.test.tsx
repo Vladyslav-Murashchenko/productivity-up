@@ -1,8 +1,9 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { useActiveTaskState } from "@/libs/api/active-task/useActiveTaskState";
+import { createTask } from "@/libs/api/tasks/createTask";
 import { useTask } from "@/libs/api/tasks/useTask";
 import { useTasks } from "@/libs/api/tasks/useTasks";
 import { useTaskDuration } from "@/libs/api/time-intervals/useTaskDuration";
@@ -57,6 +58,8 @@ describe("Tasks", () => {
     });
 
     vi.mocked(useIsTasksStale).mockReturnValue(false);
+
+    vi.mocked(createTask).mockResolvedValue();
   });
 
   it("renders create task form", () => {
@@ -134,8 +137,12 @@ describe("Tasks", () => {
     await user.type(input, "New Task");
     await user.click(createButton);
 
-    expect(todoButton).toHaveAttribute("aria-pressed", "true");
-    expect(doneButton).toHaveAttribute("aria-pressed", "false");
+    await waitFor(() => {
+      expect(todoButton).toHaveAttribute("aria-pressed", "true");
+      expect(doneButton).toHaveAttribute("aria-pressed", "false");
+    });
+
+    expect(createTask).toHaveBeenCalledWith("New Task");
   });
 
   it("shows empty message when no todo tasks", () => {
@@ -176,6 +183,6 @@ describe("Tasks", () => {
 
     renderTasks();
 
-    expect(screen.queryByText("Task 1")).not.toBeVisible();
+    expect(screen.getByText("Task 1")).not.toBeVisible();
   });
 });

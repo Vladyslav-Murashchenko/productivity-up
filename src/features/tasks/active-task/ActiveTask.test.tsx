@@ -1,6 +1,12 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
+import { completeActiveTask } from "@/libs/api/active-task/completeActiveTask";
+import { pauseActiveTask } from "@/libs/api/active-task/pauseActiveTask";
+import { useActiveTaskState } from "@/libs/api/active-task/useActiveTaskState";
+import { useTask } from "@/libs/api/tasks/useTask";
+import { useTaskDuration } from "@/libs/api/time-intervals/useTaskDuration";
+
 import { ActiveTask } from "./ActiveTask";
 
 vi.mock("@/libs/api/active-task/useActiveTaskState");
@@ -12,11 +18,9 @@ vi.mock("@/libs/api/time-intervals/useTaskDuration");
 const renderActiveTask = () => render(<ActiveTask />);
 
 describe("ActiveTask", () => {
-  beforeEach(async () => {
+  beforeEach(() => {
     vi.clearAllMocks();
 
-    const { useActiveTaskState } =
-      await import("@/libs/api/active-task/useActiveTaskState");
     vi.mocked(useActiveTaskState).mockReturnValue({
       activeTaskState: {
         primaryKey: "singleton",
@@ -25,7 +29,6 @@ describe("ActiveTask", () => {
       },
     });
 
-    const { useTask } = await import("@/libs/api/tasks/useTask");
     vi.mocked(useTask).mockReturnValue({
       task: {
         id: 1,
@@ -34,8 +37,6 @@ describe("ActiveTask", () => {
       },
     });
 
-    const { useTaskDuration } =
-      await import("@/libs/api/time-intervals/useTaskDuration");
     vi.mocked(useTaskDuration).mockReturnValue({
       taskDuration: 5 * 60 * 1000, // 5 minutes
     });
@@ -62,9 +63,6 @@ describe("ActiveTask", () => {
 
   it("calls pauseActiveTask when pause button is clicked", async () => {
     const user = userEvent.setup();
-    const { pauseActiveTask } = vi.mocked(
-      await import("@/libs/api/active-task/pauseActiveTask"),
-    );
 
     renderActiveTask();
 
@@ -76,9 +74,6 @@ describe("ActiveTask", () => {
 
   it("calls completeActiveTask when complete button is clicked", async () => {
     const user = userEvent.setup();
-    const { completeActiveTask } = vi.mocked(
-      await import("@/libs/api/active-task/completeActiveTask"),
-    );
 
     renderActiveTask();
 
@@ -88,12 +83,8 @@ describe("ActiveTask", () => {
     expect(completeActiveTask).toHaveBeenCalledOnce();
   });
 
-  it("does not render when there is no active task state", async () => {
-    const { useActiveTaskState } = vi.mocked(
-      await import("@/libs/api/active-task/useActiveTaskState"),
-    );
-
-    useActiveTaskState.mockReturnValue({
+  it("does not render when there is no active task state", () => {
+    vi.mocked(useActiveTaskState).mockReturnValue({
       activeTaskState: undefined,
     });
 
@@ -102,9 +93,7 @@ describe("ActiveTask", () => {
     expect(screen.queryByText("Active Task")).not.toBeInTheDocument();
   });
 
-  it("does not render when task data is not loaded", async () => {
-    const { useTask } = await import("@/libs/api/tasks/useTask");
-
+  it("does not render when task data is not loaded", () => {
     vi.mocked(useTask).mockReturnValue({
       task: undefined,
     });

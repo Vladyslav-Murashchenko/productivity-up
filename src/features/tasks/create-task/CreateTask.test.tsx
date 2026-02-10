@@ -1,5 +1,8 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+
+import { useActiveTaskState } from "@/libs/api/active-task/useActiveTaskState";
+import { createTask } from "@/libs/api/tasks/createTask";
 
 import { CreateTask } from "./CreateTask";
 
@@ -11,14 +14,14 @@ const renderCreateTask = () =>
   render(<CreateTask onCreateSuccess={onCreateSuccess} />);
 
 describe("CreateTask", () => {
-  beforeEach(async () => {
+  beforeEach(() => {
     vi.clearAllMocks();
 
-    const { useActiveTaskState } =
-      await import("@/libs/api/active-task/useActiveTaskState");
     vi.mocked(useActiveTaskState).mockReturnValue({
       activeTaskState: undefined,
     });
+
+    vi.mocked(createTask).mockResolvedValue();
   });
 
   it("renders task creation form", () => {
@@ -42,9 +45,6 @@ describe("CreateTask", () => {
 
   it("creates task and clears input when form is submitted with valid input", async () => {
     const user = userEvent.setup();
-    const { createTask } = vi.mocked(
-      await import("@/libs/api/tasks/createTask"),
-    );
 
     renderCreateTask();
 
@@ -55,14 +55,14 @@ describe("CreateTask", () => {
     await user.click(submitButton);
 
     expect(createTask).toHaveBeenCalledWith("Write tests");
-    expect(input).toHaveValue("");
+
+    await waitFor(() => {
+      expect(input).toHaveValue("");
+    });
   });
 
   it("trims whitespace from task name before creating", async () => {
     const user = userEvent.setup();
-    const { createTask } = vi.mocked(
-      await import("@/libs/api/tasks/createTask"),
-    );
 
     renderCreateTask();
 
@@ -82,14 +82,13 @@ describe("CreateTask", () => {
     await user.type(input, "Write tests");
     await user.click(screen.getByRole("button", { name: /create/i }));
 
-    expect(onCreateSuccess).toHaveBeenCalledOnce();
+    await waitFor(() => {
+      expect(onCreateSuccess).toHaveBeenCalledOnce();
+    });
   });
 
   it("does not create task when input is empty", async () => {
     const user = userEvent.setup();
-    const { createTask } = vi.mocked(
-      await import("@/libs/api/tasks/createTask"),
-    );
 
     renderCreateTask();
 
@@ -101,9 +100,6 @@ describe("CreateTask", () => {
 
   it("does not create task when input contains only whitespace", async () => {
     const user = userEvent.setup();
-    const { createTask } = vi.mocked(
-      await import("@/libs/api/tasks/createTask"),
-    );
 
     renderCreateTask();
 
@@ -114,12 +110,8 @@ describe("CreateTask", () => {
     expect(createTask).not.toHaveBeenCalled();
   });
 
-  it("does not render when there is an active task", async () => {
-    const { useActiveTaskState } = vi.mocked(
-      await import("@/libs/api/active-task/useActiveTaskState"),
-    );
-
-    useActiveTaskState.mockReturnValue({
+  it("does not render when there is an active task", () => {
+    vi.mocked(useActiveTaskState).mockReturnValue({
       activeTaskState: {
         primaryKey: "singleton",
         taskId: 1,
