@@ -1,6 +1,5 @@
 import { useActiveTaskState } from "@/libs/api/active-task/useActiveTaskState";
 import { useTasks } from "@/libs/api/tasks/useTasks";
-import { cn } from "@/libs/ui/utils/cn";
 
 import { Filter } from "./Filters";
 import { Task } from "./task";
@@ -36,10 +35,7 @@ export const TaskList = ({ activeFilter }: TaskListProps) => {
   return (
     <ul className="flex flex-col gap-3">
       {tasks.toReversed().map((task) => (
-        <li
-          key={task.id}
-          className={cn(activeTaskState?.taskId === task.id && "hidden")}
-        >
+        <li key={task.id} hidden={activeTaskState?.taskId === task.id}>
           <Task {...task} />
         </li>
       ))}

@@ -20,12 +20,14 @@ export const Filters = ({
   return (
     <ButtonGroup className="justify-start">
       <Button
+        aria-pressed={activeFilter === "todo"}
         variant={getFilterVariant("todo")}
         onClick={() => onActiveFilterChange("todo")}
       >
         To-do
       </Button>
       <Button
+        aria-pressed={activeFilter === "done"}
         variant={getFilterVariant("done")}
         onClick={() => onActiveFilterChange("done")}
       >
