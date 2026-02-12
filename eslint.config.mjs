@@ -16,6 +16,7 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
     "postcss.config.*",
     "eslint.config.*",
+    "public/**",
   ]),
   {
     languageOptions: {
@@ -142,6 +143,7 @@ const eslintConfig = defineConfig([
   },
   {
     rules: {
+      "import/no-cycle": "error",
       "@typescript-eslint/no-unused-vars": [
         "error",
         {
