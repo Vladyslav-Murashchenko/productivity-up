@@ -1,11 +1,11 @@
 import { useState } from "react";
 
 import { Task } from "@/libs/api/tasks/model";
-import { TimeInterval as TimeIntervalModel } from "@/libs/api/time-intervals/model";
 import { useTaskTimeIntervals } from "@/libs/api/time-intervals/useTaskTimeIntervals";
 
 import { AddIntervalButton } from "./AddIntervalButton";
 import { TimeInterval } from "./TimeInterval";
+import { sortIntervals } from "./sortIntervals";
 
 type TimeIntervalsProps = {
   taskId: Task["id"];
@@ -45,7 +45,7 @@ export const TimeIntervals = ({ taskId }: TimeIntervalsProps) => {
     );
   }
 
-  const sortedIntervals = sortByStartAsc(timeIntervals);
+  const sortedIntervals = sortIntervals(timeIntervals);
 
   return (
     <ul className="flex flex-col gap-4 py-5">
@@ -83,13 +83,3 @@ export const TimeIntervals = ({ taskId }: TimeIntervalsProps) => {
     </ul>
   );
 };
-
-function sortByStartAsc(timeIntervals: TimeIntervalModel[]) {
-  return timeIntervals.toSorted((a, b) => {
-    if (a.start.getTime() === b.start.getTime()) {
-      return a.end.getTime() - b.end.getTime();
-    }
-
-    return a.start.getTime() - b.start.getTime();
-  });
-}

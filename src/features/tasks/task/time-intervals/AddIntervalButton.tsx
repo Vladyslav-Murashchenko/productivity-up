@@ -53,7 +53,7 @@ export const AddIntervalButton = ({
       variant="secondary"
       isIconOnly
       onClick={handleCreateStart}
-      aria-label="Add time interval before"
+      aria-label="Add time interval"
       className={className}
       isDisabled={isReadonly}
     >
