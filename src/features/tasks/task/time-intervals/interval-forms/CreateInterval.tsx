@@ -5,7 +5,7 @@ import { createTimeInterval } from "@/libs/api/time-intervals/createTimeInterval
 import { withErrorToast } from "@/libs/ui/utils/withErrorToast";
 
 import { getInitialEnd, getInitialStart } from "./CreateInterval.utils";
-import { IntervalForm } from "./IntervalForm";
+import { IntervalForm } from "./interval-form";
 
 type CreateIntervalProps = {
   taskId: Task["id"];
