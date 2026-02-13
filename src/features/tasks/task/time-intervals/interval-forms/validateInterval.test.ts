@@ -1,5 +1,3 @@
-import { describe, expect, it } from "vitest";
-
 import { validateInterval } from "./validateInterval";
 
 describe("validateInterval", () => {

@@ -1,5 +1,3 @@
-import { describe, expect, it } from "vitest";
-
 import { getInitialEnd, getInitialStart } from "./CreateInterval.utils";
 
 describe("CreateInterval.utils", () => {
