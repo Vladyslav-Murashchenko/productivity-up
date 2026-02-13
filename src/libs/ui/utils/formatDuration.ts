@@ -3,6 +3,10 @@ const SECONDS_IN_MINUTE = 60;
 const SECONDS_IN_HOUR = 60 * SECONDS_IN_MINUTE;
 
 export function formatDuration(totalMs: number): string {
+  if (totalMs <= 0) {
+    return "0s";
+  }
+
   const totalSeconds = Math.floor(totalMs / MS_IN_SECOND);
   const hours = Math.floor(totalSeconds / SECONDS_IN_HOUR);
   const minutes = Math.floor(
