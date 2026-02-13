@@ -1,10 +1,10 @@
-import { addHours, min, subHours } from "date-fns";
 import { useState } from "react";
 
 import { Task } from "@/libs/api/tasks/model";
 import { createTimeInterval } from "@/libs/api/time-intervals/createTimeInterval";
 import { withErrorToast } from "@/libs/ui/utils/withErrorToast";
 
+import { getInitialEnd, getInitialStart } from "./CreateInterval.utils";
 import { IntervalForm } from "./IntervalForm";
 
 type CreateIntervalProps = {
@@ -57,39 +57,3 @@ export const CreateInterval = ({
     />
   );
 };
-
-const DEFAULT_INTERVAL_DURATION_HOURS = 1;
-
-function getInitialStart(
-  mountTime: Date,
-  prevIntervalEnd?: Date,
-  nextIntervalStart?: Date,
-): Date {
-  if (prevIntervalEnd) {
-    return prevIntervalEnd;
-  }
-
-  if (nextIntervalStart) {
-    return subHours(nextIntervalStart, DEFAULT_INTERVAL_DURATION_HOURS);
-  }
-
-  return subHours(mountTime, DEFAULT_INTERVAL_DURATION_HOURS);
-}
-
-function getInitialEnd(
-  mountTime: Date,
-  initialStart: Date,
-  nextIntervalStart?: Date,
-): Date {
-  if (nextIntervalStart) {
-    return min([
-      nextIntervalStart,
-      addHours(initialStart, DEFAULT_INTERVAL_DURATION_HOURS),
-    ]);
-  }
-
-  return min([
-    mountTime,
-    addHours(initialStart, DEFAULT_INTERVAL_DURATION_HOURS),
-  ]);
-}
