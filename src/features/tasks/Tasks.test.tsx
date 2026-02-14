@@ -151,9 +151,7 @@ describe("Tasks", () => {
 
     renderTasks();
 
-    expect(
-      screen.getByText("Your to-do list is empty. Add your first task"),
-    ).toBeInTheDocument();
+    expect(screen.getByText("Your to-do list is empty")).toBeInTheDocument();
   });
 
   it("shows empty message when no done tasks", async () => {

@@ -20,25 +20,21 @@ export const TaskList = ({
     return null;
   }
 
-  if (tasks.length === 0 && activeFilter === "todo") {
-    return (
-      <p className="text-muted">
-        Your to-do list is empty. Add your first task
-      </p>
-    );
-  }
-
-  if (tasks.length === 0 && activeFilter === "done") {
-    return <p className="text-muted">No tasks completed yet</p>;
-  }
-
-  if (tasks.length === 1 && activeFilter === "todo" && hasActiveTask) {
-    return <p className="text-muted">The only to-do task you have is active</p>;
-  }
-
   const visibleTasks = tasks
     .filter((task) => task.status === activeFilter)
     .toReversed();
+
+  if (visibleTasks.length === 0 && activeFilter === "todo") {
+    return <p className="text-muted">Your to-do list is empty</p>;
+  }
+
+  if (visibleTasks.length === 0 && activeFilter === "done") {
+    return <p className="text-muted">No tasks completed yet</p>;
+  }
+
+  if (visibleTasks.length === 1 && activeFilter === "todo" && hasActiveTask) {
+    return <p className="text-muted">The only to-do task you have is active</p>;
+  }
 
   return (
     <ul className="flex flex-col gap-3">
