@@ -13,7 +13,9 @@ import { useTemporaryHiddenTaskId } from "./useTemporaryHiddenTaskId";
 export const Tasks = () => {
   const [activeFilter, setActiveFilter] = useState<Filter>("todo");
 
-  const { tasks } = useTasks({ status: activeFilter });
+  const { tasks } = useTasks();
+
+  const filteredTasks = tasks?.filter((task) => task.status === activeFilter);
 
   const { activeTaskState } = useActiveTaskState();
 
@@ -37,9 +39,10 @@ export const Tasks = () => {
         onActiveFilterChange={setActiveFilter}
       />
       <TaskList
-        tasks={tasks}
+        tasks={filteredTasks}
         activeFilter={activeFilter}
         hiddenTaskId={temporaryHiddenTaskId ?? activeTaskState?.taskId ?? null}
+        hasActiveTask={!!activeTaskState}
       />
     </div>
   );

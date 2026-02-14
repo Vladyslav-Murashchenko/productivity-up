@@ -2,22 +2,21 @@ import { Task as TaskModel } from "@/libs/api/tasks/model";
 
 import { Filter } from "./Filters";
 import { Task } from "./task";
-import { useIsTasksStale } from "./useIsTasksStale";
 
 type TaskListProps = {
   tasks?: TaskModel[];
   activeFilter: Filter;
   hiddenTaskId: TaskModel["id"] | null;
+  hasActiveTask: boolean;
 };
 
 export const TaskList = ({
   tasks,
   activeFilter,
   hiddenTaskId,
+  hasActiveTask,
 }: TaskListProps) => {
-  const isTasksStale = useIsTasksStale(activeFilter, tasks);
-
-  if (!tasks || isTasksStale) {
+  if (!tasks) {
     return null;
   }
 
@@ -31,6 +30,10 @@ export const TaskList = ({
 
   if (tasks.length === 0 && activeFilter === "done") {
     return <p className="text-muted">No tasks completed yet</p>;
+  }
+
+  if (tasks.length === 1 && activeFilter === "todo" && hasActiveTask) {
+    return <p className="text-muted">The only to-do task you have is active</p>;
   }
 
   return (

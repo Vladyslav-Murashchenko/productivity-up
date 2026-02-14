@@ -9,7 +9,6 @@ import { useTaskDuration } from "@/libs/api/time-intervals/useTaskDuration";
 import { useTaskTimeIntervals } from "@/libs/api/time-intervals/useTaskTimeIntervals";
 
 import { Tasks } from "./Tasks";
-import { useIsTasksStale } from "./useIsTasksStale";
 
 vi.mock("@/libs/api/tasks/createTask");
 vi.mock("@/libs/api/active-task/useActiveTaskState");
@@ -17,7 +16,6 @@ vi.mock("@/libs/api/tasks/useTask");
 vi.mock("@/libs/api/tasks/useTasks");
 vi.mock("@/libs/api/time-intervals/useTaskDuration");
 vi.mock("@/libs/api/time-intervals/useTaskTimeIntervals");
-vi.mock("./useIsTasksStale");
 
 const renderTasks = () => render(<Tasks />);
 
@@ -55,8 +53,6 @@ describe("Tasks", () => {
     vi.mocked(useTaskTimeIntervals).mockReturnValue({
       timeIntervals: [],
     });
-
-    vi.mocked(useIsTasksStale).mockReturnValue(false);
 
     vi.mocked(createTask).mockResolvedValue();
   });
