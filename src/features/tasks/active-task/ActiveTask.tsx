@@ -1,8 +1,9 @@
 import { Check, Pause } from "@gravity-ui/icons";
 
 import { completeActiveTask } from "@/libs/api/active-task/completeActiveTask";
+import { ActiveTaskState } from "@/libs/api/active-task/model";
 import { pauseActiveTask } from "@/libs/api/active-task/pauseActiveTask";
-import { useActiveTaskState } from "@/libs/api/active-task/useActiveTaskState";
+import { Task } from "@/libs/api/tasks/model";
 import { useTask } from "@/libs/api/tasks/useTask";
 import { Button } from "@/libs/ui/Button";
 import { Card } from "@/libs/ui/Card";
@@ -11,10 +12,16 @@ import { withErrorToast } from "@/libs/ui/utils/withErrorToast";
 import { TaskName } from "./TaskName";
 import { Timer } from "./Timer";
 
-export const ActiveTask = () => {
-  const { activeTaskState } = useActiveTaskState();
+type ActiveTaskProps = {
+  activeTaskState: ActiveTaskState;
+  onTaskCompleteSuccess: (id: Task["id"]) => void;
+};
 
-  const { task: activeTask } = useTask(activeTaskState?.taskId);
+export const ActiveTask = ({
+  activeTaskState,
+  onTaskCompleteSuccess,
+}: ActiveTaskProps) => {
+  const { task: activeTask } = useTask(activeTaskState.taskId);
 
   const handlePause = () => {
     void withErrorToast({
@@ -25,12 +32,15 @@ export const ActiveTask = () => {
 
   const handleComplete = () => {
     void withErrorToast({
-      fn: completeActiveTask,
+      fn: async () => {
+        await completeActiveTask();
+        onTaskCompleteSuccess(activeTaskState.taskId);
+      },
       errorPrefix: "Failed to complete task",
     });
   };
 
-  if (!activeTaskState || !activeTask) {
+  if (!activeTask) {
     return null;
   }
 

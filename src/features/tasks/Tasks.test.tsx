@@ -61,12 +61,6 @@ describe("Tasks", () => {
     vi.mocked(createTask).mockResolvedValue();
   });
 
-  it("renders create task form", () => {
-    renderTasks();
-
-    expect(screen.getByPlaceholderText("Enter a task...")).toBeInTheDocument();
-  });
-
   it("renders active task if there is one", () => {
     vi.mocked(useActiveTaskState).mockReturnValue({
       activeTaskState: {
@@ -87,6 +81,16 @@ describe("Tasks", () => {
     renderTasks();
 
     expect(screen.getByText("Active Task")).toBeInTheDocument();
+    expect(
+      screen.queryByPlaceholderText("Enter a task..."),
+    ).not.toBeInTheDocument();
+  });
+
+  it("renders create task when there is no active task state", () => {
+    renderTasks();
+
+    expect(screen.queryByText("Active Task")).not.toBeInTheDocument();
+    expect(screen.getByPlaceholderText("Enter a task...")).toBeInTheDocument();
   });
 
   it("renders task list with todo tasks", () => {

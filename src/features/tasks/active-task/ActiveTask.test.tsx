@@ -3,31 +3,35 @@ import userEvent from "@testing-library/user-event";
 
 import { completeActiveTask } from "@/libs/api/active-task/completeActiveTask";
 import { pauseActiveTask } from "@/libs/api/active-task/pauseActiveTask";
-import { useActiveTaskState } from "@/libs/api/active-task/useActiveTaskState";
 import { useTask } from "@/libs/api/tasks/useTask";
 import { useTaskDuration } from "@/libs/api/time-intervals/useTaskDuration";
 
 import { ActiveTask } from "./ActiveTask";
 
-vi.mock("@/libs/api/active-task/useActiveTaskState");
 vi.mock("@/libs/api/active-task/pauseActiveTask");
 vi.mock("@/libs/api/active-task/completeActiveTask");
 vi.mock("@/libs/api/tasks/useTask");
 vi.mock("@/libs/api/time-intervals/useTaskDuration");
 
-const renderActiveTask = () => render(<ActiveTask />);
+const handleTaskCompleteSuccess = vi.fn();
+
+const defaultActiveTaskState = {
+  primaryKey: "singleton",
+  taskId: 1,
+  startTime: new Date("2026-02-10T10:00:00"),
+} as const;
+
+const renderActiveTask = () =>
+  render(
+    <ActiveTask
+      activeTaskState={defaultActiveTaskState}
+      onTaskCompleteSuccess={handleTaskCompleteSuccess}
+    />,
+  );
 
 describe("ActiveTask", () => {
   beforeEach(() => {
     vi.clearAllMocks();
-
-    vi.mocked(useActiveTaskState).mockReturnValue({
-      activeTaskState: {
-        primaryKey: "singleton",
-        taskId: 1,
-        startTime: new Date("2026-02-10T10:00:00"),
-      },
-    });
 
     vi.mocked(useTask).mockReturnValue({
       task: {
@@ -81,16 +85,6 @@ describe("ActiveTask", () => {
     await user.click(completeButton);
 
     expect(completeActiveTask).toHaveBeenCalledOnce();
-  });
-
-  it("does not render when there is no active task state", () => {
-    vi.mocked(useActiveTaskState).mockReturnValue({
-      activeTaskState: undefined,
-    });
-
-    renderActiveTask();
-
-    expect(screen.queryByText("Active Task")).not.toBeInTheDocument();
   });
 
   it("does not render when task data is not loaded", () => {

@@ -1,6 +1,6 @@
 import { useId, useState } from "react";
 
-import { useActiveTaskState } from "@/libs/api/active-task/useActiveTaskState";
+import { ActiveTaskState } from "@/libs/api/active-task/model";
 import { createTask } from "@/libs/api/tasks/createTask";
 import { Button } from "@/libs/ui/Button";
 import { Card } from "@/libs/ui/Card";
@@ -10,10 +10,14 @@ import { TextField } from "@/libs/ui/TextField";
 import { withErrorToast } from "@/libs/ui/utils/withErrorToast";
 
 type CreateTaskProps = {
+  activeTaskState?: ActiveTaskState;
   onCreateSuccess: () => void;
 };
 
-export const CreateTask = ({ onCreateSuccess }: CreateTaskProps) => {
+export const CreateTask = ({
+  activeTaskState,
+  onCreateSuccess,
+}: CreateTaskProps) => {
   const [taskName, setTaskName] = useState("");
 
   const taskNameInputId = useId();
@@ -36,8 +40,6 @@ export const CreateTask = ({ onCreateSuccess }: CreateTaskProps) => {
       errorPrefix: "Failed to create task",
     });
   };
-
-  const { activeTaskState } = useActiveTaskState();
 
   if (activeTaskState) {
     return null;

@@ -1,25 +1,19 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import { useActiveTaskState } from "@/libs/api/active-task/useActiveTaskState";
 import { createTask } from "@/libs/api/tasks/createTask";
 
 import { CreateTask } from "./CreateTask";
 
-vi.mock("@/libs/api/active-task/useActiveTaskState");
 vi.mock("@/libs/api/tasks/createTask");
 
 const onCreateSuccess = vi.fn();
-const renderCreateTask = () =>
-  render(<CreateTask onCreateSuccess={onCreateSuccess} />);
+const renderCreateTask = (props = {}) =>
+  render(<CreateTask onCreateSuccess={onCreateSuccess} {...props} />);
 
 describe("CreateTask", () => {
   beforeEach(() => {
     vi.clearAllMocks();
-
-    vi.mocked(useActiveTaskState).mockReturnValue({
-      activeTaskState: undefined,
-    });
 
     vi.mocked(createTask).mockResolvedValue();
   });
@@ -108,21 +102,5 @@ describe("CreateTask", () => {
     await user.click(screen.getByRole("button", { name: /create/i }));
 
     expect(createTask).not.toHaveBeenCalled();
-  });
-
-  it("does not render when there is an active task", () => {
-    vi.mocked(useActiveTaskState).mockReturnValue({
-      activeTaskState: {
-        primaryKey: "singleton",
-        taskId: 1,
-        startTime: new Date("2026-01-01T00:00:00"),
-      },
-    });
-
-    renderCreateTask();
-
-    expect(
-      screen.queryByPlaceholderText("Enter a task..."),
-    ).not.toBeInTheDocument();
   });
 });
