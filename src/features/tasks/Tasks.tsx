@@ -15,8 +15,6 @@ export const Tasks = () => {
 
   const { tasks } = useTasks();
 
-  const filteredTasks = tasks?.filter((task) => task.status === activeFilter);
-
   const { activeTaskState } = useActiveTaskState();
 
   const { temporaryHiddenTaskId, temporaryHideTask } =
@@ -39,7 +37,7 @@ export const Tasks = () => {
         onActiveFilterChange={setActiveFilter}
       />
       <TaskList
-        tasks={filteredTasks}
+        tasks={tasks}
         activeFilter={activeFilter}
         hiddenTaskId={temporaryHiddenTaskId ?? activeTaskState?.taskId ?? null}
         hasActiveTask={!!activeTaskState}

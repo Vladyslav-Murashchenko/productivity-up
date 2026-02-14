@@ -36,9 +36,13 @@ export const TaskList = ({
     return <p className="text-muted">The only to-do task you have is active</p>;
   }
 
+  const visibleTasks = tasks
+    .filter((task) => task.status === activeFilter)
+    .toReversed();
+
   return (
     <ul className="flex flex-col gap-3">
-      {tasks.toReversed().map((task) => (
+      {visibleTasks.map((task) => (
         <li key={task.id} hidden={hiddenTaskId === task.id}>
           <Task {...task} />
         </li>
