@@ -26,16 +26,16 @@ export const TaskList = ({
     .filter((task) => task.id !== hiddenTaskId)
     .toReversed();
 
+  if (visibleTasks.length === 0 && activeFilter === "todo" && hasActiveTask) {
+    return <p className="text-muted">The only to-do task you have is active</p>;
+  }
+
   if (visibleTasks.length === 0 && activeFilter === "todo") {
     return <p className="text-muted">Your to-do list is empty</p>;
   }
 
   if (visibleTasks.length === 0 && activeFilter === "done") {
     return <p className="text-muted">No tasks completed yet</p>;
-  }
-
-  if (visibleTasks.length === 0 && activeFilter === "todo" && hasActiveTask) {
-    return <p className="text-muted">The only to-do task you have is active</p>;
   }
 
   return (
