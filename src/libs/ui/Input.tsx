@@ -10,7 +10,7 @@ export type InputProps = {
   type?: "text";
   variant?: "primary" | "secondary";
   className?: string;
-  ref: React.Ref<HTMLInputElement>;
+  ref?: React.Ref<HTMLInputElement>;
 };
 
 export const Input = (props: InputProps) => {
