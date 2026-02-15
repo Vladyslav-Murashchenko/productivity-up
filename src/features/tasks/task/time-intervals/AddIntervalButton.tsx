@@ -1,6 +1,7 @@
 import { Plus } from "@gravity-ui/icons";
 import { useState } from "react";
 
+import { AnimatedCreateIntervalWrapper } from "@/libs/animations/AnimatedCreateIntervalWrapper";
 import { Task } from "@/libs/api/tasks/model";
 import { Button } from "@/libs/ui/Button";
 
@@ -9,6 +10,7 @@ import { CreateInterval } from "./interval-forms";
 type AddIntervalButtonProps = {
   taskId: Task["id"];
   className?: string;
+  wrapperClassName?: string;
   prevIntervalEnd?: Date;
   nextIntervalStart?: Date;
   isReadonly: boolean;
@@ -19,6 +21,7 @@ type AddIntervalButtonProps = {
 export const AddIntervalButton = ({
   taskId,
   className,
+  wrapperClassName,
   onAddStart,
   onAddFinish,
   isReadonly,
@@ -39,25 +42,29 @@ export const AddIntervalButton = ({
 
   if (expanded) {
     return (
-      <CreateInterval
-        taskId={taskId}
-        onCreateFinish={handleCreateFinish}
-        prevIntervalEnd={prevIntervalEnd}
-        nextIntervalStart={nextIntervalStart}
-      />
+      <AnimatedCreateIntervalWrapper className="my-5 overflow-hidden">
+        <CreateInterval
+          taskId={taskId}
+          onCreateFinish={handleCreateFinish}
+          prevIntervalEnd={prevIntervalEnd}
+          nextIntervalStart={nextIntervalStart}
+        />
+      </AnimatedCreateIntervalWrapper>
     );
   }
 
   return (
-    <Button
-      variant="secondary"
-      isIconOnly
-      onClick={handleCreateStart}
-      aria-label="Add time interval"
-      className={className}
-      isDisabled={isReadonly}
-    >
-      <Plus />
-    </Button>
+    <div className={wrapperClassName}>
+      <Button
+        className={className}
+        variant="secondary"
+        isIconOnly
+        onClick={handleCreateStart}
+        aria-label="Add time interval"
+        isDisabled={isReadonly}
+      >
+        <Plus />
+      </Button>
+    </div>
   );
 };

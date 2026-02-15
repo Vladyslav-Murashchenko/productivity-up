@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import { AnimatedTimeIntervalList } from "@/libs/animations/AnimatedTimeIntervalList";
 import { Task } from "@/libs/api/tasks/model";
 import { useTaskTimeIntervals } from "@/libs/api/time-intervals/useTaskTimeIntervals";
 
@@ -34,7 +35,7 @@ export const TimeIntervals = ({ taskId }: TimeIntervalsProps) => {
         <p className="text-center text-muted">No time intervals recorded yet</p>
         <div className="flex flex-col">
           <AddIntervalButton
-            className="self-center"
+            wrapperClassName="self-center"
             taskId={taskId}
             isReadonly={isReadonly}
             onAddStart={handleBlockingActionStart}
@@ -48,12 +49,16 @@ export const TimeIntervals = ({ taskId }: TimeIntervalsProps) => {
   const sortedIntervals = sortIntervals(timeIntervals);
 
   return (
-    <ul className="flex flex-col gap-4 py-5">
+    <AnimatedTimeIntervalList className="flex flex-col">
       {sortedIntervals.map((interval, i, intervals) => (
-        <li className="flex flex-col gap-4 relative" key={interval.id}>
+        <AnimatedTimeIntervalList.Item
+          key={interval.id}
+          className="flex flex-col overflow-hidden"
+        >
           {i === 0 && (
             <AddIntervalButton
-              className="absolute top-0 left-0 -translate-y-[70%] -translate-x-[20%] scale-50"
+              wrapperClassName="h-5"
+              className="-translate-y-[20%] -translate-x-[20%] scale-50"
               taskId={taskId}
               isReadonly={isReadonly}
               onAddStart={handleBlockingActionStart}
@@ -70,7 +75,8 @@ export const TimeIntervals = ({ taskId }: TimeIntervalsProps) => {
             onEditFinish={handleBlockingActionEnd}
           />
           <AddIntervalButton
-            className="absolute bottom-0 left-0 translate-y-[70%] -translate-x-[20%] scale-50"
+            wrapperClassName="h-5"
+            className="-translate-y-[20%] -translate-x-[20%] scale-50"
             taskId={taskId}
             isReadonly={isReadonly}
             onAddStart={handleBlockingActionStart}
@@ -78,8 +84,8 @@ export const TimeIntervals = ({ taskId }: TimeIntervalsProps) => {
             prevIntervalEnd={interval.end}
             nextIntervalStart={intervals[i + 1]?.start}
           />
-        </li>
+        </AnimatedTimeIntervalList.Item>
       ))}
-    </ul>
+    </AnimatedTimeIntervalList>
   );
 };

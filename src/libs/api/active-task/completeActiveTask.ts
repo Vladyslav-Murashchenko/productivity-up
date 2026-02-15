@@ -1,5 +1,5 @@
-import { db } from "@/libs/api/_internal/db";
-import { ACTIVE_TASK_STATE_PRIMARY_KEY } from "@/libs/api/active-task/model";
+import { db } from "../_internal/db";
+import { ACTIVE_TASK_STATE_PRIMARY_KEY } from "../active-task/model";
 
 export const completeActiveTask = async () => {
   const now = new Date();

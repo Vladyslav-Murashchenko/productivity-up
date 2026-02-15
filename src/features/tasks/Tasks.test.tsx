@@ -180,6 +180,6 @@ describe("Tasks", () => {
 
     renderTasks();
 
-    expect(screen.getByText("Task 1")).not.toBeVisible();
+    expect(screen.queryByText("Task 1")).not.toBeInTheDocument();
   });
 });

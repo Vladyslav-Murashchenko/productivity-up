@@ -1,11 +1,10 @@
 import { differenceInMilliseconds } from "date-fns";
 
+import { db } from "../_internal/db";
 import {
   ACTIVE_TASK_STATE_PRIMARY_KEY,
   ActiveTaskState,
-} from "@/libs/api/active-task/model";
-
-import { db } from "../_internal/db";
+} from "../active-task/model";
 import { Task } from "../tasks/model";
 
 export const startTask = async (taskId: Task["id"]) => {

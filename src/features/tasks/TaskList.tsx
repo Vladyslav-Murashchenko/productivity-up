@@ -1,3 +1,4 @@
+import { AnimatedTaskList } from "@/libs/animations/AnimatedTaskList";
 import { Task as TaskModel } from "@/libs/api/tasks/model";
 
 import { Filter } from "./Filters";
@@ -22,6 +23,7 @@ export const TaskList = ({
 
   const visibleTasks = tasks
     .filter((task) => task.status === activeFilter)
+    .filter((task) => task.id !== hiddenTaskId)
     .toReversed();
 
   if (visibleTasks.length === 0 && activeFilter === "todo") {
@@ -32,17 +34,17 @@ export const TaskList = ({
     return <p className="text-muted">No tasks completed yet</p>;
   }
 
-  if (visibleTasks.length === 1 && activeFilter === "todo" && hasActiveTask) {
+  if (visibleTasks.length === 0 && activeFilter === "todo" && hasActiveTask) {
     return <p className="text-muted">The only to-do task you have is active</p>;
   }
 
   return (
-    <ul className="flex flex-col gap-3">
+    <AnimatedTaskList key={activeFilter} className="flex flex-col gap-3">
       {visibleTasks.map((task) => (
-        <li key={task.id} hidden={hiddenTaskId === task.id}>
+        <AnimatedTaskList.Item key={task.id}>
           <Task {...task} />
-        </li>
+        </AnimatedTaskList.Item>
       ))}
-    </ul>
+    </AnimatedTaskList>
   );
 };
