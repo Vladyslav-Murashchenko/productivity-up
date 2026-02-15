@@ -21,10 +21,16 @@ const customButtonVariants = tv({
   },
 });
 
-export const Button = ({ className, variant, ...props }: ButtonProps) => {
+export const Button = ({
+  className,
+  variant,
+  onClick,
+  ...props
+}: ButtonProps) => {
   return (
     <ButtonH
       className={customButtonVariants({ variant, className })}
+      onPress={onClick}
       {...props}
     />
   );
