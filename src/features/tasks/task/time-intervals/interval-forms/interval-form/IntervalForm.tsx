@@ -64,7 +64,7 @@ export const IntervalForm = ({
     <Card variant="secondary" className="p-4">
       <form
         onSubmit={handleSubmit}
-        className="flex flex-row items-center gap-6"
+        className="flex flex-row flex-wrap items-center gap-6"
       >
         <div className="flex flex-col gap-1">
           <DateTimePicker

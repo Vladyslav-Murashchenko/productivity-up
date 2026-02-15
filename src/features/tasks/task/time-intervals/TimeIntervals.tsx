@@ -57,7 +57,7 @@ export const TimeIntervals = ({ taskId }: TimeIntervalsProps) => {
         >
           {i === 0 && (
             <AddIntervalButton
-              wrapperClassName="h-5"
+              wrapperClassName="h-5.5"
               className="-translate-y-[20%] -translate-x-[20%] scale-50"
               taskId={taskId}
               isReadonly={isReadonly}
@@ -75,7 +75,7 @@ export const TimeIntervals = ({ taskId }: TimeIntervalsProps) => {
             onEditFinish={handleBlockingActionEnd}
           />
           <AddIntervalButton
-            wrapperClassName="h-5"
+            wrapperClassName="h-5.5"
             className="-translate-y-[20%] -translate-x-[20%] scale-50"
             taskId={taskId}
             isReadonly={isReadonly}

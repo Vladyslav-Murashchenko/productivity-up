@@ -64,7 +64,10 @@ export const TimeInterval = ({
   }
 
   return (
-    <Card variant="secondary" className="p-4 flex flex-row items-center gap-6">
+    <Card
+      variant="secondary"
+      className="p-4 flex flex-row flex-wrap items-center gap-6"
+    >
       <div className="flex flex-col gap-1 min-w-45">
         <div className="flex justify-start gap-2">
           <span className="text-sm w-9 text-muted">Start: </span>
