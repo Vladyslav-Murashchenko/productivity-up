@@ -6,7 +6,6 @@ import { useTaskTimeIntervals } from "@/libs/api/time-intervals/useTaskTimeInter
 
 import { AddIntervalButton } from "./AddIntervalButton";
 import { TimeInterval } from "./TimeInterval";
-import { sortIntervals } from "./sortIntervals";
 
 type TimeIntervalsProps = {
   taskId: Task["id"];
@@ -46,11 +45,9 @@ export const TimeIntervals = ({ taskId }: TimeIntervalsProps) => {
     );
   }
 
-  const sortedIntervals = sortIntervals(timeIntervals);
-
   return (
     <AnimatedTimeIntervalList className="flex flex-col">
-      {sortedIntervals.map((interval, i, intervals) => (
+      {timeIntervals.map((interval, i, intervals) => (
         <AnimatedTimeIntervalList.Item
           key={interval.id}
           className="flex flex-col overflow-hidden"

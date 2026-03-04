@@ -3,7 +3,10 @@ import { useEffect, useState } from "react";
 
 import { Task } from "@/libs/api/tasks/model";
 import { useTaskDuration } from "@/libs/api/time-intervals/useTaskDuration";
+import { Button } from "@/libs/ui/Button";
 import { formatDuration } from "@/libs/ui/utils/formatDuration";
+
+import { TimeIntervalsModal } from "./time-intervals";
 
 type TimerProps = {
   startTime: Date;
@@ -31,5 +34,11 @@ export const Timer = ({ startTime, taskId }: TimerProps) => {
 
   const totalMs = taskDuration + differenceInMilliseconds(now, startTime);
 
-  return <span className="text-3xl">{formatDuration(totalMs)}</span>;
+  return (
+    <TimeIntervalsModal taskId={taskId}>
+      <Button variant="text" className="text-3xl">
+        {formatDuration(totalMs)}
+      </Button>
+    </TimeIntervalsModal>
+  );
 };

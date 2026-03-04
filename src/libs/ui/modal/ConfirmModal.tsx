@@ -6,7 +6,7 @@ type ConfirmModalProps = {
   heading: React.ReactNode;
   body: React.ReactNode;
   confirmText: string;
-  onConfirm: () => void;
+  onConfirm?: () => void;
 };
 
 export const ConfirmModal = ({

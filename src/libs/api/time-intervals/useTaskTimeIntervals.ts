@@ -1,6 +1,7 @@
 import { useLiveQuery } from "dexie-react-hooks";
 
 import { db } from "../_internal/db";
+import { sortIntervals } from "../_internal/utils/sortIntervals";
 import { Task } from "../tasks/model";
 
 export const useTaskTimeIntervals = (taskId?: Task["id"]) => {
@@ -12,5 +13,7 @@ export const useTaskTimeIntervals = (taskId?: Task["id"]) => {
     return db.timeIntervals.where("taskId").equals(taskId).toArray();
   }, [taskId]);
 
-  return { timeIntervals };
+  return {
+    timeIntervals: timeIntervals && sortIntervals(timeIntervals),
+  };
 };
