@@ -17,41 +17,20 @@ export function validateInterval({
   start,
   end,
   now,
-}: ValidateIntervalParams): ValidationError {
-  const validateStart = () => {
-    if (start > end) {
-      return {
-        start: "Start time must be before end time",
-      };
-    }
+}: ValidateIntervalParams) {
+  const errors: ValidationError = {};
 
-    if (prevIntervalEnd && start < prevIntervalEnd) {
-      return {
-        start: "Start time cannot be before previous interval end time",
-      };
-    }
+  if (start > end) {
+    errors.start = "Start time must be before end time";
+  } else if (prevIntervalEnd && start < prevIntervalEnd) {
+    errors.start = "Start time cannot be before previous interval end time";
+  }
 
-    return {};
-  };
+  if (nextIntervalStart && end > nextIntervalStart) {
+    errors.end = "End time cannot be after next interval start time";
+  } else if (end > now) {
+    errors.end = "End time cannot be in the future";
+  }
 
-  const validateEnd = () => {
-    if (nextIntervalStart && end > nextIntervalStart) {
-      return {
-        end: "End time cannot be after next interval start time",
-      };
-    }
-
-    if (end > now) {
-      return {
-        end: "End time cannot be in the future",
-      };
-    }
-
-    return {};
-  };
-
-  return {
-    ...validateStart(),
-    ...validateEnd(),
-  };
+  return errors;
 }
