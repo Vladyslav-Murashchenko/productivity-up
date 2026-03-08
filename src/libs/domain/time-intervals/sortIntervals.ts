@@ -1,11 +1,13 @@
+import { differenceInMilliseconds, isEqual } from "date-fns";
+
 import { Interval } from "./model";
 
 export function sortIntervals<T extends Interval>(timeIntervals: T[]) {
   return timeIntervals.toSorted((a, b) => {
-    if (a.start.getTime() === b.start.getTime()) {
-      return a.end.getTime() - b.end.getTime();
+    if (isEqual(a.start, b.start)) {
+      return differenceInMilliseconds(a.end, b.end);
     }
 
-    return a.start.getTime() - b.start.getTime();
+    return differenceInMilliseconds(a.start, b.start);
   });
 }
