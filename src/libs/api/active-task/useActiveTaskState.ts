@@ -1,10 +1,11 @@
 import { useLiveQuery } from "dexie-react-hooks";
 
-import { db } from "../_internal/db";
-import { ACTIVE_TASK_STATE_PRIMARY_KEY } from "../active-task/model";
+import { ActiveTaskState } from "@/libs/domain/active-task/model";
+
+import { ACTIVE_TASK_STATE_PRIMARY_KEY, db } from "../_internal/db";
 
 export const useActiveTaskState = () => {
-  const activeTaskState = useLiveQuery(() => {
+  const activeTaskState: ActiveTaskState | undefined = useLiveQuery(() => {
     return db.activeTaskState.get(ACTIVE_TASK_STATE_PRIMARY_KEY);
   });
 

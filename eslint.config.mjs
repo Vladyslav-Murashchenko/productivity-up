@@ -118,6 +118,7 @@ const eslintConfig = defineConfig([
                 "@/libs/api/**",
                 "@/libs/ui/**",
                 "@/libs/animations/**",
+                "@/libs/domain/**",
               ],
               message:
                 "This lib cannot import from features, shared-features, and other libs",
@@ -182,6 +183,40 @@ const eslintConfig = defineConfig([
                 "@/libs/api/**",
                 "@/libs/ui/**",
                 "@/libs/animations/**",
+                "@/libs/domain/**",
+              ],
+              message:
+                "This lib cannot import from features, shared-features, and other libs",
+            },
+            {
+              group: ["@heroui/react", "@heroui/styles"],
+              message: "Can be used only in src/libs/ui",
+            },
+            {
+              group: ["dexie", "dexie-react-hooks", "@/libs/api/_internal/**"],
+              message: "Can be used only in src/libs/api",
+            },
+          ],
+        },
+      ],
+    },
+  },
+  {
+    files: ["src/libs/domain/**"],
+    rules: {
+      "no-restricted-imports": [
+        "error",
+        {
+          patterns: [
+            {
+              group: [
+                "@/features/**",
+                "@/shared-features/**",
+                "@/app/**",
+                "@/libs/api/**",
+                "@/libs/ui/**",
+                "@/libs/animations/**",
+                "@/libs/domain/**",
               ],
               message:
                 "This lib cannot import from features, shared-features, and other libs",

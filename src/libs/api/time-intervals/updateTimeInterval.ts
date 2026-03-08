@@ -1,5 +1,6 @@
+import { TimeInterval } from "@/libs/domain/time-intervals/model";
+
 import { db } from "../_internal/db";
-import { TimeInterval } from "./model";
 
 type UpdateTimeIntervalParams = {
   id: TimeInterval["id"];

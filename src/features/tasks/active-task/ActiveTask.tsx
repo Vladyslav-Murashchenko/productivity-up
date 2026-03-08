@@ -1,10 +1,10 @@
 import { Check, Pause } from "@gravity-ui/icons";
 
 import { completeActiveTask } from "@/libs/api/active-task/completeActiveTask";
-import { ActiveTaskState } from "@/libs/api/active-task/model";
 import { pauseActiveTask } from "@/libs/api/active-task/pauseActiveTask";
-import { Task } from "@/libs/api/tasks/model";
 import { useTask } from "@/libs/api/tasks/useTask";
+import { ActiveTaskState } from "@/libs/domain/active-task/model";
+import { Task } from "@/libs/domain/tasks/model";
 import { Button } from "@/libs/ui/Button";
 import { Card } from "@/libs/ui/Card";
 import { withErrorToast } from "@/libs/ui/utils/withErrorToast";

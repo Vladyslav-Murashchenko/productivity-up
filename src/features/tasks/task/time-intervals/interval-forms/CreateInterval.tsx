@@ -1,11 +1,14 @@
 import { useState } from "react";
 
-import { Task } from "@/libs/api/tasks/model";
 import { createTimeInterval } from "@/libs/api/time-intervals/createTimeInterval";
+import { Task } from "@/libs/domain/tasks/model";
+import {
+  getInitialEnd,
+  getInitialStart,
+} from "@/libs/domain/time-intervals/getInitial";
 import { withErrorToast } from "@/libs/ui/utils/withErrorToast";
 
-import { getInitialEnd, getInitialStart } from "./CreateInterval.utils";
-import { IntervalForm } from "./interval-form";
+import { IntervalForm } from "./IntervalForm";
 
 type CreateIntervalProps = {
   taskId: Task["id"];

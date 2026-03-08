@@ -1,11 +1,13 @@
 import { Check, Xmark } from "@gravity-ui/icons";
 import { useState } from "react";
 
+import {
+  ValidationError,
+  validateInterval,
+} from "@/libs/domain/time-intervals/validateInterval";
 import { Button } from "@/libs/ui/Button";
 import { Card } from "@/libs/ui/Card";
 import { DateTimePicker } from "@/libs/ui/DateTimePicker";
-
-import { ValidationError, validateInterval } from "./validateInterval";
 
 type IntervalFormProps = {
   initialStart: Date;

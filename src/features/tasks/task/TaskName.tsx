@@ -2,7 +2,7 @@ import { useId, useState } from "react";
 
 import { EditTaskNameModal } from "@/shared-features/edit-task-name";
 
-import { Task } from "@/libs/api/tasks/model";
+import { Task } from "@/libs/domain/tasks/model";
 import { Button } from "@/libs/ui/Button";
 
 export type TaskNameProps = {

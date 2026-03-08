@@ -1,8 +1,8 @@
-import { TimeInterval } from "@/libs/api/time-intervals/model";
 import { updateTimeInterval } from "@/libs/api/time-intervals/updateTimeInterval";
+import { TimeInterval } from "@/libs/domain/time-intervals/model";
 import { withErrorToast } from "@/libs/ui/utils/withErrorToast";
 
-import { IntervalForm } from "./interval-form";
+import { IntervalForm } from "./IntervalForm";
 
 type IntervalFormProps = {
   interval: TimeInterval;

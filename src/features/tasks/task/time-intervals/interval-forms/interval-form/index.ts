@@ -1,1 +1,0 @@
-export { IntervalForm } from "./IntervalForm";

@@ -1,5 +1,6 @@
+import { Task } from "@/libs/domain/tasks/model";
+
 import { db } from "../_internal/db";
-import { Task } from "./model";
 
 export const updateTaskName = async (taskId: Task["id"], newName: string) => {
   if (newName.trim() === "") {

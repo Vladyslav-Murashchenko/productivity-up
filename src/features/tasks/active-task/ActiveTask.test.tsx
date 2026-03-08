@@ -16,7 +16,6 @@ vi.mock("@/libs/api/time-intervals/useTaskDuration");
 const handleTaskCompleteSuccess = vi.fn();
 
 const defaultActiveTaskState = {
-  primaryKey: "singleton",
   taskId: 1,
   startTime: new Date("2026-02-10T10:00:00"),
 } as const;

@@ -1,4 +1,4 @@
-import { Task } from "@/libs/api/tasks/model";
+import { Task } from "@/libs/domain/tasks/model";
 import { Button } from "@/libs/ui/Button";
 import { ButtonGroup } from "@/libs/ui/ButtonGroup";
 

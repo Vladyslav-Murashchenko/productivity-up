@@ -1,5 +1,6 @@
+import { Task } from "@/libs/domain/tasks/model";
+
 import { db } from "../_internal/db";
-import { Task } from "../tasks/model";
 
 type CreateTimeIntervalParams = {
   taskId: Task["id"];

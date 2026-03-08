@@ -60,7 +60,6 @@ describe("Tasks", () => {
   it("renders active task if there is one", () => {
     vi.mocked(useActiveTaskState).mockReturnValue({
       activeTaskState: {
-        primaryKey: "singleton",
         taskId: 1,
         startTime: new Date("2026-01-01T00:00:00"),
       },
@@ -172,7 +171,6 @@ describe("Tasks", () => {
   it("should not display active task", () => {
     vi.mocked(useActiveTaskState).mockReturnValue({
       activeTaskState: {
-        primaryKey: "singleton",
         taskId: 1,
         startTime: new Date("2026-01-01T00:00:00"),
       },

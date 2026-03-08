@@ -1,7 +1,8 @@
-import { differenceInMilliseconds } from "date-fns";
 import { useMemo } from "react";
 
-import { Task } from "../tasks/model";
+import { Task } from "@/libs/domain/tasks/model";
+import { calculateDuration } from "@/libs/domain/time-intervals/calculateDuration";
+
 import { useTaskTimeIntervals } from "./useTaskTimeIntervals";
 
 type UseTaskDurationParams = {
@@ -16,9 +17,7 @@ export const useTaskDuration = ({ taskId }: UseTaskDurationParams) => {
       return;
     }
 
-    return timeIntervals
-      .map((interval) => differenceInMilliseconds(interval.end, interval.start))
-      .reduce((acc, ms) => acc + ms, 0);
+    return calculateDuration(timeIntervals);
   }, [timeIntervals]);
 
   return { taskDuration };

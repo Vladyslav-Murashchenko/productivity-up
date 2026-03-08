@@ -1,8 +1,9 @@
+import { TimeInterval } from "@/libs/domain/time-intervals/model";
+
 import { db } from "../_internal/db";
-import { TimeInterval } from "./model";
 
 export const deleteTimeInterval = async (
-  id: TimeInterval["id"]
+  id: TimeInterval["id"],
 ): Promise<void> => {
   await db.timeIntervals.delete(id);
 };

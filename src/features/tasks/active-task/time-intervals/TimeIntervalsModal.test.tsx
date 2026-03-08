@@ -43,7 +43,6 @@ describe("TimeIntervalsModal", () => {
 
     vi.mocked(useActiveTaskState).mockReturnValue({
       activeTaskState: {
-        primaryKey: "singleton",
         taskId: 1,
         startTime: new Date("2026-02-12T16:00:00"),
       },

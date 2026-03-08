@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-import { Task } from "@/libs/api/tasks/model";
 import { updateTaskName } from "@/libs/api/tasks/updateTaskName";
+import { Task } from "@/libs/domain/tasks/model";
 import { FieldError } from "@/libs/ui/FieldError";
 import { Input } from "@/libs/ui/Input";
 import { Label } from "@/libs/ui/Label";

@@ -1,7 +1,4 @@
-type Interval = {
-  start: Date;
-  end: Date;
-};
+import { Interval } from "./model";
 
 export function sortIntervals<T extends Interval>(timeIntervals: T[]) {
   return timeIntervals.toSorted((a, b) => {

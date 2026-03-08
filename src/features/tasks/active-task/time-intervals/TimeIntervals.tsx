@@ -1,7 +1,7 @@
 import { TimeIntervalView } from "@/shared-features/time-interval";
 
-import { Task } from "@/libs/api/tasks/model";
 import { useTaskTimeIntervals } from "@/libs/api/time-intervals/useTaskTimeIntervals";
+import { Task } from "@/libs/domain/tasks/model";
 
 import { ActiveTimeInterval } from "./ActiveTimeInterval";
 
