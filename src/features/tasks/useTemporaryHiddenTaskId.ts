@@ -3,9 +3,8 @@ import { useEffect, useEffectEvent, useState } from "react";
 import { Task } from "@/libs/domain/tasks/model";
 
 /**
- * Prevents a just-finished active task from flashing in the "to-do" list
- * while tasks query is still stale.
- * Note: this issue can also be solved if combine useTasks and useActiveTaskState to one useLiveQuery
+ * Prevents a just-finished active task from flashing in the "to-do" list while tasks query is still stale.
+ * Note: this issue may be solved if combine useTasks and useActiveTaskState to one useLiveQuery
  */
 export const useTemporaryHiddenTaskId = (tasks?: Task[]) => {
   const [temporaryHiddenId, setTemporaryHiddenId] = useState<Task["id"] | null>(
@@ -21,9 +20,7 @@ export const useTemporaryHiddenTaskId = (tasks?: Task[]) => {
   });
 
   useEffect(() => {
-    if (tasks) {
-      clearHidden();
-    }
+    clearHidden();
   }, [tasks]);
 
   return {
