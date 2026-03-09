@@ -229,6 +229,10 @@ const eslintConfig = defineConfig([
               group: ["dexie", "dexie-react-hooks", "@/libs/api/_internal/**"],
               message: "Can be used only in src/libs/api",
             },
+            {
+              group: ["motion", "@/libs/animations/_internal/**"],
+              message: "Can be used only in src/libs/animations",
+            },
           ],
         },
       ],
