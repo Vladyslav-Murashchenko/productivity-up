@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { createTimeInterval } from "@/libs/api/time-intervals/createTimeInterval";
+import { createTimeInterval } from "@/libs/db/time-intervals/createTimeInterval";
 import { Task } from "@/libs/domain/tasks/model";
 import {
   getInitialEnd,

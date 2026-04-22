@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import { createTimeInterval } from "@/libs/api/time-intervals/createTimeInterval";
+import { createTimeInterval } from "@/libs/db/time-intervals/createTimeInterval";
 
 import { CreateInterval } from "./CreateInterval";
 

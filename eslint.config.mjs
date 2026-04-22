@@ -62,8 +62,8 @@ const eslintConfig = defineConfig([
               message: "Can be used only in src/libs/ui",
             },
             {
-              group: ["dexie", "dexie-react-hooks", "@/libs/api/_internal/**"],
-              message: "Can be used only in src/libs/api",
+              group: ["dexie", "dexie-react-hooks", "@/libs/db/_internal/**"],
+              message: "Can be used only in src/libs/db",
             },
             {
               group: ["motion/*", "@/libs/animations/_internal/**"],
@@ -91,8 +91,8 @@ const eslintConfig = defineConfig([
               message: "Can be used only in src/libs/ui",
             },
             {
-              group: ["dexie", "dexie-react-hooks", "@/libs/api/_internal/**"],
-              message: "Can be used only in src/libs/api",
+              group: ["dexie", "dexie-react-hooks", "@/libs/db/_internal/**"],
+              message: "Can be used only in src/libs/db",
             },
             {
               group: ["motion", "@/libs/animations/_internal/**"],
@@ -115,7 +115,7 @@ const eslintConfig = defineConfig([
                 "@/features/**",
                 "@/shared-features/**",
                 "@/app/**",
-                "@/libs/api/**",
+                "@/libs/db/**",
                 "@/libs/ui/**",
                 "@/libs/animations/**",
                 "@/libs/domain/**",
@@ -124,8 +124,8 @@ const eslintConfig = defineConfig([
                 "This lib cannot import from features, shared-features, and other libs",
             },
             {
-              group: ["dexie", "dexie-react-hooks", "@/libs/api/_internal/**"],
-              message: "Can be used only in src/libs/api",
+              group: ["dexie", "dexie-react-hooks", "@/libs/db/_internal/**"],
+              message: "Can be used only in src/libs/db",
             },
             {
               group: ["motion", "@/libs/animations/_internal/**"],
@@ -137,7 +137,7 @@ const eslintConfig = defineConfig([
     },
   },
   {
-    files: ["src/libs/api/**"],
+    files: ["src/libs/db/**"],
     rules: {
       "no-restricted-imports": [
         "error",
@@ -148,7 +148,7 @@ const eslintConfig = defineConfig([
                 "@/features/**",
                 "@/shared-features/**",
                 "@/app/**",
-                "@/libs/api/**",
+                "@/libs/db/**",
                 "@/libs/ui/**",
                 "@/libs/animations/**",
               ],
@@ -180,7 +180,7 @@ const eslintConfig = defineConfig([
                 "@/features/**",
                 "@/shared-features/**",
                 "@/app/**",
-                "@/libs/api/**",
+                "@/libs/db/**",
                 "@/libs/ui/**",
                 "@/libs/animations/**",
                 "@/libs/domain/**",
@@ -193,8 +193,8 @@ const eslintConfig = defineConfig([
               message: "Can be used only in src/libs/ui",
             },
             {
-              group: ["dexie", "dexie-react-hooks", "@/libs/api/_internal/**"],
-              message: "Can be used only in src/libs/api",
+              group: ["dexie", "dexie-react-hooks", "@/libs/db/_internal/**"],
+              message: "Can be used only in src/libs/db",
             },
           ],
         },
@@ -213,7 +213,7 @@ const eslintConfig = defineConfig([
                 "@/features/**",
                 "@/shared-features/**",
                 "@/app/**",
-                "@/libs/api/**",
+                "@/libs/db/**",
                 "@/libs/ui/**",
                 "@/libs/animations/**",
                 "@/libs/domain/**",
@@ -226,8 +226,8 @@ const eslintConfig = defineConfig([
               message: "Can be used only in src/libs/ui",
             },
             {
-              group: ["dexie", "dexie-react-hooks", "@/libs/api/_internal/**"],
-              message: "Can be used only in src/libs/api",
+              group: ["dexie", "dexie-react-hooks", "@/libs/db/_internal/**"],
+              message: "Can be used only in src/libs/db",
             },
             {
               group: ["motion", "@/libs/animations/_internal/**"],

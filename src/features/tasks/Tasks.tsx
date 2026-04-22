@@ -1,8 +1,8 @@
 "use client";
 import { useState } from "react";
 
-import { useActiveTaskState } from "@/libs/api/active-task/useActiveTaskState";
-import { useTasks } from "@/libs/api/tasks/useTasks";
+import { useActiveTaskState } from "@/libs/db/active-task/useActiveTaskState";
+import { useTasks } from "@/libs/db/tasks/useTasks";
 
 import { Filter, Filters } from "./Filters";
 import { TaskList } from "./TaskList";

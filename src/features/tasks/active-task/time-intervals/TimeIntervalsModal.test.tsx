@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import { useActiveTaskState } from "@/libs/api/active-task/useActiveTaskState";
-import { useTaskTimeIntervals } from "@/libs/api/time-intervals/useTaskTimeIntervals";
+import { useActiveTaskState } from "@/libs/db/active-task/useActiveTaskState";
+import { useTaskTimeIntervals } from "@/libs/db/time-intervals/useTaskTimeIntervals";
 import { Button } from "@/libs/ui/Button";
 
 import { TimeIntervalsModal } from "./TimeIntervalsModal";

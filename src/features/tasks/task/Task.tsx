@@ -1,7 +1,7 @@
 import { ArrowRotateLeft, Play } from "@gravity-ui/icons";
 
-import { startTask } from "@/libs/api/active-task/startTask";
-import { reopenTask } from "@/libs/api/tasks/reopenTask";
+import { startTask } from "@/libs/db/active-task/startTask";
+import { reopenTask } from "@/libs/db/tasks/reopenTask";
 import { Task as TaskModel } from "@/libs/domain/tasks/model";
 import { Button } from "@/libs/ui/Button";
 import { Card } from "@/libs/ui/Card";

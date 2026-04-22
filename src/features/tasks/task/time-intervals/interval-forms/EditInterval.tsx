@@ -1,4 +1,4 @@
-import { updateTimeInterval } from "@/libs/api/time-intervals/updateTimeInterval";
+import { updateTimeInterval } from "@/libs/db/time-intervals/updateTimeInterval";
 import { TimeInterval } from "@/libs/domain/time-intervals/model";
 import { withErrorToast } from "@/libs/ui/utils/withErrorToast";
 

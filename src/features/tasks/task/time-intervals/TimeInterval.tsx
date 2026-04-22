@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { TimeIntervalView } from "@/shared-features/time-interval";
 
-import { deleteTimeInterval } from "@/libs/api/time-intervals/deleteTimeInterval";
+import { deleteTimeInterval } from "@/libs/db/time-intervals/deleteTimeInterval";
 import { TimeInterval as TimeIntervalModel } from "@/libs/domain/time-intervals/model";
 import { withErrorToast } from "@/libs/ui/utils/withErrorToast";
 

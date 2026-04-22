@@ -1,11 +1,11 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import { startTask } from "@/libs/api/active-task/startTask";
-import { deleteTask } from "@/libs/api/tasks/deleteTask";
-import { reopenTask } from "@/libs/api/tasks/reopenTask";
-import { useTaskDuration } from "@/libs/api/time-intervals/useTaskDuration";
-import { useTaskTimeIntervals } from "@/libs/api/time-intervals/useTaskTimeIntervals";
+import { startTask } from "@/libs/db/active-task/startTask";
+import { deleteTask } from "@/libs/db/tasks/deleteTask";
+import { reopenTask } from "@/libs/db/tasks/reopenTask";
+import { useTaskDuration } from "@/libs/db/time-intervals/useTaskDuration";
+import { useTaskTimeIntervals } from "@/libs/db/time-intervals/useTaskTimeIntervals";
 
 import { Task } from "./Task";
 

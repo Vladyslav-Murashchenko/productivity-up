@@ -1,8 +1,8 @@
 import { Check, Pause } from "@gravity-ui/icons";
 
-import { completeActiveTask } from "@/libs/api/active-task/completeActiveTask";
-import { pauseActiveTask } from "@/libs/api/active-task/pauseActiveTask";
-import { useTask } from "@/libs/api/tasks/useTask";
+import { completeActiveTask } from "@/libs/db/active-task/completeActiveTask";
+import { pauseActiveTask } from "@/libs/db/active-task/pauseActiveTask";
+import { useTask } from "@/libs/db/tasks/useTask";
 import { ActiveTaskState } from "@/libs/domain/active-task/model";
 import { Task } from "@/libs/domain/tasks/model";
 import { Button } from "@/libs/ui/Button";

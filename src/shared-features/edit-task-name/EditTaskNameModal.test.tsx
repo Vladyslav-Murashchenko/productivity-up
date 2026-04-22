@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import { updateTaskName } from "@/libs/api/tasks/updateTaskName";
+import { updateTaskName } from "@/libs/db/tasks/updateTaskName";
 
 import { EditTaskNameModal } from "./EditTaskNameModal";
 

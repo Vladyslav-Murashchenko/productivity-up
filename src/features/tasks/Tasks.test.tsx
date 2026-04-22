@@ -1,12 +1,12 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import { useActiveTaskState } from "@/libs/api/active-task/useActiveTaskState";
-import { createTask } from "@/libs/api/tasks/createTask";
-import { useTask } from "@/libs/api/tasks/useTask";
-import { useTasks } from "@/libs/api/tasks/useTasks";
-import { useTaskDuration } from "@/libs/api/time-intervals/useTaskDuration";
-import { useTaskTimeIntervals } from "@/libs/api/time-intervals/useTaskTimeIntervals";
+import { useActiveTaskState } from "@/libs/db/active-task/useActiveTaskState";
+import { createTask } from "@/libs/db/tasks/createTask";
+import { useTask } from "@/libs/db/tasks/useTask";
+import { useTasks } from "@/libs/db/tasks/useTasks";
+import { useTaskDuration } from "@/libs/db/time-intervals/useTaskDuration";
+import { useTaskTimeIntervals } from "@/libs/db/time-intervals/useTaskTimeIntervals";
 
 import { Tasks } from "./Tasks";
 

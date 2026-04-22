@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import { createTask } from "@/libs/api/tasks/createTask";
+import { createTask } from "@/libs/db/tasks/createTask";
 
 import { CreateTask } from "./CreateTask";
 

@@ -1,6 +1,6 @@
 import { useId, useState } from "react";
 
-import { createTask } from "@/libs/api/tasks/createTask";
+import { createTask } from "@/libs/db/tasks/createTask";
 import { Button } from "@/libs/ui/Button";
 import { Card } from "@/libs/ui/Card";
 import { Input } from "@/libs/ui/Input";

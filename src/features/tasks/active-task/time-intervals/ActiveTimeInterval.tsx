@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import { TimeIntervalView } from "@/shared-features/time-interval";
 
-import { useActiveTaskState } from "@/libs/api/active-task/useActiveTaskState";
+import { useActiveTaskState } from "@/libs/db/active-task/useActiveTaskState";
 
 export const ActiveTimeInterval = () => {
   const { activeTaskState } = useActiveTaskState();

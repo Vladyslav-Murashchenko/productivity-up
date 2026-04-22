@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import { updateTimeInterval } from "@/libs/api/time-intervals/updateTimeInterval";
+import { updateTimeInterval } from "@/libs/db/time-intervals/updateTimeInterval";
 
 import { EditInterval } from "./EditInterval";
 
