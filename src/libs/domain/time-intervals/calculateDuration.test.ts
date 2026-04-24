@@ -1,5 +1,5 @@
+import { Interval } from "../model";
 import { calculateDuration } from "./calculateDuration";
-import { Interval } from "./model";
 
 describe("calculateDuration", () => {
   it("calculates duration for a single interval", () => {
