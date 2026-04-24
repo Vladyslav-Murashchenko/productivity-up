@@ -10,12 +10,12 @@ import { useTaskTimeIntervals } from "@/libs/db/time-intervals/useTaskTimeInterv
 
 import { Tasks } from "./Tasks";
 
-vi.mock("@/libs/api/tasks/createTask");
-vi.mock("@/libs/api/active-task/useActiveTaskState");
-vi.mock("@/libs/api/tasks/useTask");
-vi.mock("@/libs/api/tasks/useTasks");
-vi.mock("@/libs/api/time-intervals/useTaskDuration");
-vi.mock("@/libs/api/time-intervals/useTaskTimeIntervals");
+vi.mock("@/libs/db/tasks/createTask");
+vi.mock("@/libs/db/active-task/useActiveTaskState");
+vi.mock("@/libs/db/tasks/useTask");
+vi.mock("@/libs/db/tasks/useTasks");
+vi.mock("@/libs/db/time-intervals/useTaskDuration");
+vi.mock("@/libs/db/time-intervals/useTaskTimeIntervals");
 
 const renderTasks = () => render(<Tasks />);
 

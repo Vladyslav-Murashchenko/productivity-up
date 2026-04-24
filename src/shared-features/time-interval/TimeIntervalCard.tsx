@@ -8,7 +8,7 @@ import { formatDuration } from "@/libs/ui/utils/formatDuration";
 
 const TIME_FORMAT = "dd.MM.yy, HH:mm:ss";
 
-type TimeIntervalViewProps = {
+type TimeIntervalCardProps = {
   start: Date;
   end: Date;
   onEdit?: () => void;
@@ -16,13 +16,13 @@ type TimeIntervalViewProps = {
   isReadonly: boolean;
 };
 
-export const TimeIntervalView = ({
+export const TimeIntervalCard = ({
   start,
   end,
   onEdit,
   onDelete,
   isReadonly,
-}: TimeIntervalViewProps) => {
+}: TimeIntervalCardProps) => {
   const intervalDuration = differenceInMilliseconds(end, start);
 
   return (

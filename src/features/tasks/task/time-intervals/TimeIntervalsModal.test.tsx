@@ -6,10 +6,10 @@ import { Button } from "@/libs/ui/Button";
 
 import { TimeIntervalsModal } from "./TimeIntervalsModal";
 
-vi.mock("@/libs/api/time-intervals/useTaskTimeIntervals");
-vi.mock("@/libs/api/time-intervals/createTimeInterval");
-vi.mock("@/libs/api/time-intervals/updateTimeInterval");
-vi.mock("@/libs/api/time-intervals/deleteTimeInterval");
+vi.mock("@/libs/db/time-intervals/useTaskTimeIntervals");
+vi.mock("@/libs/db/time-intervals/createTimeInterval");
+vi.mock("@/libs/db/time-intervals/updateTimeInterval");
+vi.mock("@/libs/db/time-intervals/deleteTimeInterval");
 
 const renderTimeIntervalsModal = (props = {}) =>
   render(

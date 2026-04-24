@@ -9,15 +9,15 @@ import { useTaskTimeIntervals } from "@/libs/db/time-intervals/useTaskTimeInterv
 
 import { Task } from "./Task";
 
-vi.mock("@/libs/api/active-task/startTask");
-vi.mock("@/libs/api/tasks/reopenTask");
-vi.mock("@/libs/api/tasks/deleteTask");
-vi.mock("@/libs/api/tasks/updateTaskName");
-vi.mock("@/libs/api/time-intervals/useTaskDuration");
-vi.mock("@/libs/api/time-intervals/useTaskTimeIntervals");
-vi.mock("@/libs/api/time-intervals/createTimeInterval");
-vi.mock("@/libs/api/time-intervals/updateTimeInterval");
-vi.mock("@/libs/api/time-intervals/deleteTimeInterval");
+vi.mock("@/libs/db/active-task/startTask");
+vi.mock("@/libs/db/tasks/reopenTask");
+vi.mock("@/libs/db/tasks/deleteTask");
+vi.mock("@/libs/db/tasks/updateTaskName");
+vi.mock("@/libs/db/time-intervals/useTaskDuration");
+vi.mock("@/libs/db/time-intervals/useTaskTimeIntervals");
+vi.mock("@/libs/db/time-intervals/createTimeInterval");
+vi.mock("@/libs/db/time-intervals/updateTimeInterval");
+vi.mock("@/libs/db/time-intervals/deleteTimeInterval");
 
 const renderTask = (props = {}) =>
   render(<Task id={1} name="Write tests" status="todo" {...props} />);

@@ -1,4 +1,4 @@
-import { TimeIntervalView } from "@/shared-features/time-interval";
+import { TimeIntervalCard } from "@/shared-features/time-interval";
 
 import { useTaskTimeIntervals } from "@/libs/db/time-intervals/useTaskTimeIntervals";
 import { Task } from "@/libs/domain/tasks/model";
@@ -20,7 +20,7 @@ export const TimeIntervals = ({ taskId }: TimeIntervalsProps) => {
     <ul className="flex flex-col gap-5.5">
       {timeIntervals.map((interval) => (
         <li key={interval.id}>
-          <TimeIntervalView
+          <TimeIntervalCard
             start={interval.start}
             end={interval.end}
             isReadonly

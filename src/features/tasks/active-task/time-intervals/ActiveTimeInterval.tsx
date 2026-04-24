@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { TimeIntervalView } from "@/shared-features/time-interval";
+import { TimeIntervalCard } from "@/shared-features/time-interval";
 
 import { useActiveTaskState } from "@/libs/db/active-task/useActiveTaskState";
 
@@ -24,6 +24,6 @@ export const ActiveTimeInterval = () => {
   }
 
   return (
-    <TimeIntervalView start={activeTaskState.startTime} end={now} isReadonly />
+    <TimeIntervalCard start={activeTaskState.startTime} end={now} isReadonly />
   );
 };

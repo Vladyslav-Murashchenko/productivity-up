@@ -5,7 +5,7 @@ import { createTimeInterval } from "@/libs/db/time-intervals/createTimeInterval"
 
 import { CreateInterval } from "./CreateInterval";
 
-vi.mock("@/libs/api/time-intervals/createTimeInterval");
+vi.mock("@/libs/db/time-intervals/createTimeInterval");
 
 const onCreateFinish = vi.fn();
 const taskId = 1;

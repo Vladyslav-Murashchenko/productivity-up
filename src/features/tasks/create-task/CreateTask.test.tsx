@@ -5,7 +5,7 @@ import { createTask } from "@/libs/db/tasks/createTask";
 
 import { CreateTask } from "./CreateTask";
 
-vi.mock("@/libs/api/tasks/createTask");
+vi.mock("@/libs/db/tasks/createTask");
 
 const onCreateSuccess = vi.fn();
 const renderCreateTask = (props = {}) =>

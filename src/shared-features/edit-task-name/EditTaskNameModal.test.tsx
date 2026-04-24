@@ -5,7 +5,7 @@ import { updateTaskName } from "@/libs/db/tasks/updateTaskName";
 
 import { EditTaskNameModal } from "./EditTaskNameModal";
 
-vi.mock("@/libs/api/tasks/updateTaskName");
+vi.mock("@/libs/db/tasks/updateTaskName");
 
 const TASK_ID = 1;
 const onOpenChange = vi.fn();

@@ -1,1 +1,1 @@
-export { TimeIntervalView } from "./TimeIntervalView";
+export { TimeIntervalCard } from "./TimeIntervalCard";

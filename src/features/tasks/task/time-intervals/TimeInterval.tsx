@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { TimeIntervalView } from "@/shared-features/time-interval";
+import { TimeIntervalCard } from "@/shared-features/time-interval";
 
 import { deleteTimeInterval } from "@/libs/db/time-intervals/deleteTimeInterval";
 import { TimeInterval as TimeIntervalModel } from "@/libs/domain/time-intervals/model";
@@ -56,7 +56,7 @@ export const TimeInterval = ({
   }
 
   return (
-    <TimeIntervalView
+    <TimeIntervalCard
       start={interval.start}
       end={interval.end}
       onEdit={handleEditStart}

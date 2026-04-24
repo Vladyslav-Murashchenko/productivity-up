@@ -8,10 +8,10 @@ import { useTaskDuration } from "@/libs/db/time-intervals/useTaskDuration";
 
 import { ActiveTask } from "./ActiveTask";
 
-vi.mock("@/libs/api/active-task/pauseActiveTask");
-vi.mock("@/libs/api/active-task/completeActiveTask");
-vi.mock("@/libs/api/tasks/useTask");
-vi.mock("@/libs/api/time-intervals/useTaskDuration");
+vi.mock("@/libs/db/active-task/pauseActiveTask");
+vi.mock("@/libs/db/active-task/completeActiveTask");
+vi.mock("@/libs/db/tasks/useTask");
+vi.mock("@/libs/db/time-intervals/useTaskDuration");
 
 const handleTaskCompleteSuccess = vi.fn();
 

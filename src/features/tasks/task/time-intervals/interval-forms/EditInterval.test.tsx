@@ -5,7 +5,7 @@ import { updateTimeInterval } from "@/libs/db/time-intervals/updateTimeInterval"
 
 import { EditInterval } from "./EditInterval";
 
-vi.mock("@/libs/api/time-intervals/updateTimeInterval");
+vi.mock("@/libs/db/time-intervals/updateTimeInterval");
 
 const onEditFinish = vi.fn();
 const interval = {
