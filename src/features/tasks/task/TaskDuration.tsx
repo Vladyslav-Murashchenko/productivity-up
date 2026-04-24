@@ -2,7 +2,7 @@ import { Clock } from "@gravity-ui/icons";
 import { useId } from "react";
 
 import { useTaskDuration } from "@/libs/db/time-intervals/useTaskDuration";
-import { Task } from "@/libs/domain/tasks/model";
+import { Task } from "@/libs/domain/model";
 import { Button } from "@/libs/ui/Button";
 import { formatDuration } from "@/libs/ui/utils/formatDuration";
 

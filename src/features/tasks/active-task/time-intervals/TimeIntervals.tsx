@@ -1,7 +1,7 @@
 import { TimeIntervalCard } from "@/shared-features/time-interval";
 
 import { useTaskTimeIntervals } from "@/libs/db/time-intervals/useTaskTimeIntervals";
-import { Task } from "@/libs/domain/tasks/model";
+import { Task } from "@/libs/domain/model";
 
 import { ActiveTimeInterval } from "./ActiveTimeInterval";
 

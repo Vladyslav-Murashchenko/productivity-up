@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { AnimatedTimeIntervalList } from "@/libs/animations/AnimatedTimeIntervalList";
 import { useTaskTimeIntervals } from "@/libs/db/time-intervals/useTaskTimeIntervals";
-import { Task } from "@/libs/domain/tasks/model";
+import { Task } from "@/libs/domain/model";
 
 import { AddIntervalButton } from "./AddIntervalButton";
 import { TimeInterval } from "./TimeInterval";

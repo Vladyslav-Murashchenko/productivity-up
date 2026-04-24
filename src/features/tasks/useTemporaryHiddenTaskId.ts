@@ -1,6 +1,6 @@
 import { useEffect, useEffectEvent, useState } from "react";
 
-import { Task } from "@/libs/domain/tasks/model";
+import { Task } from "@/libs/domain/model";
 
 /**
  * Prevents a just-finished active task from flashing in the "to-do" list while tasks query is still stale.

@@ -1,8 +1,6 @@
 import { Dexie, type EntityTable } from "dexie";
 
-import { ActiveTaskState } from "@/libs/domain/active-task/model";
-import { Task } from "@/libs/domain/tasks/model";
-import { TimeInterval } from "@/libs/domain/time-intervals/model";
+import { ActiveTaskState, Task, TimeInterval } from "@/libs/domain/model";
 
 export const ACTIVE_TASK_STATE_PRIMARY_KEY = "singleton";
 

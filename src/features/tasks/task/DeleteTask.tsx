@@ -1,7 +1,7 @@
 import { TrashBin } from "@gravity-ui/icons";
 
 import { deleteTask } from "@/libs/db/tasks/deleteTask";
-import { Task } from "@/libs/domain/tasks/model";
+import { Task } from "@/libs/domain/model";
 import { Button } from "@/libs/ui/Button";
 import { ConfirmModal } from "@/libs/ui/modal/ConfirmModal";
 import { withErrorToast } from "@/libs/ui/utils/withErrorToast";

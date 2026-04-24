@@ -1,6 +1,6 @@
 import { useLiveQuery } from "dexie-react-hooks";
 
-import { ActiveTaskState } from "@/libs/domain/active-task/model";
+import { ActiveTaskState } from "@/libs/domain/model";
 
 import { ACTIVE_TASK_STATE_PRIMARY_KEY, db } from "../_internal/db";
 

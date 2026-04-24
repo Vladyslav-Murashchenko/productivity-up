@@ -2,7 +2,7 @@ import { Plus } from "@gravity-ui/icons";
 import { useState } from "react";
 
 import { AnimatedCreateIntervalWrapper } from "@/libs/animations/AnimatedCreateIntervalWrapper";
-import { Task } from "@/libs/domain/tasks/model";
+import { Task } from "@/libs/domain/model";
 import { Button } from "@/libs/ui/Button";
 
 import { CreateInterval } from "./interval-forms";

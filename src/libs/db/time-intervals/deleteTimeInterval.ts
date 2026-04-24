@@ -1,4 +1,4 @@
-import { TimeInterval } from "@/libs/domain/time-intervals/model";
+import { TimeInterval } from "@/libs/domain/model";
 
 import { db } from "../_internal/db";
 

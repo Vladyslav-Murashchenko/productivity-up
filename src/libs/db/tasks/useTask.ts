@@ -1,6 +1,6 @@
 import { useLiveQuery } from "dexie-react-hooks";
 
-import { Task } from "@/libs/domain/tasks/model";
+import { Task } from "@/libs/domain/model";
 
 import { db } from "../_internal/db";
 

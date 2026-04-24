@@ -1,5 +1,5 @@
 import { AnimatedTaskList } from "@/libs/animations/AnimatedTaskList";
-import { Task as TaskModel } from "@/libs/domain/tasks/model";
+import { Task as TaskModel } from "@/libs/domain/model";
 
 import { Filter } from "./Filters";
 import { Task } from "./task";

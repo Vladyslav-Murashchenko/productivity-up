@@ -1,6 +1,6 @@
 import { useId } from "react";
 
-import { Task } from "@/libs/domain/tasks/model";
+import { Task } from "@/libs/domain/model";
 import { FormModal } from "@/libs/ui/modal/FormModal";
 
 import { EditTaskNameForm } from "./EditTaskNameForm";

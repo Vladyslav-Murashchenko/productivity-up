@@ -1,5 +1,5 @@
 import { updateTimeInterval } from "@/libs/db/time-intervals/updateTimeInterval";
-import { TimeInterval } from "@/libs/domain/time-intervals/model";
+import { TimeInterval } from "@/libs/domain/model";
 import { withErrorToast } from "@/libs/ui/utils/withErrorToast";
 
 import { IntervalForm } from "./IntervalForm";

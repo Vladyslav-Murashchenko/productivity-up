@@ -1,7 +1,6 @@
 import { differenceInMilliseconds } from "date-fns";
 
-import { ActiveTaskState } from "@/libs/domain/active-task/model";
-import { Task } from "@/libs/domain/tasks/model";
+import { ActiveTaskState, Task } from "@/libs/domain/model";
 
 import { ACTIVE_TASK_STATE_PRIMARY_KEY, db } from "../_internal/db";
 

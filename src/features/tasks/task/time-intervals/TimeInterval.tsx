@@ -3,7 +3,7 @@ import { useState } from "react";
 import { TimeIntervalCard } from "@/shared-features/time-interval";
 
 import { deleteTimeInterval } from "@/libs/db/time-intervals/deleteTimeInterval";
-import { TimeInterval as TimeIntervalModel } from "@/libs/domain/time-intervals/model";
+import { TimeInterval as TimeIntervalModel } from "@/libs/domain/model";
 import { withErrorToast } from "@/libs/ui/utils/withErrorToast";
 
 import { EditInterval } from "./interval-forms";

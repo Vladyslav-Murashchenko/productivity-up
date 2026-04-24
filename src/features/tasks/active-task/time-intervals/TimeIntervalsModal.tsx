@@ -1,4 +1,4 @@
-import { Task } from "@/libs/domain/tasks/model";
+import { Task } from "@/libs/domain/model";
 import { Modal } from "@/libs/ui/modal/Modal";
 
 import { TimeIntervals } from "./TimeIntervals";

@@ -1,6 +1,6 @@
 import { differenceInMilliseconds } from "date-fns";
 
-import { Interval } from "./model";
+import { Interval } from "../model";
 
 export const calculateDuration = <T extends Interval>(timeIntervals: T[]) => {
   return timeIntervals
