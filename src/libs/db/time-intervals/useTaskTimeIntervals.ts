@@ -1,7 +1,7 @@
 import { useLiveQuery } from "dexie-react-hooks";
 
 import { Task } from "@/libs/domain/model";
-import { sortIntervals } from "@/libs/domain/time-intervals/sortIntervals";
+import { sortIntervals } from "@/libs/domain/time-intervals/timeIntervals";
 
 import { db } from "../_internal/db";
 

@@ -1,3 +1,8 @@
+import {
+  closeActiveTaskInterval,
+  shouldSaveInterval,
+} from "@/libs/domain/time-intervals/activeTaskInterval";
+
 import { ACTIVE_TASK_STATE_PRIMARY_KEY, db } from "../_internal/db";
 
 export const pauseActiveTask = async () => {
@@ -12,11 +17,9 @@ export const pauseActiveTask = async () => {
       throw new Error("No active task to pause");
     }
 
-    await db.timeIntervals.add({
-      taskId: activeTaskState.taskId,
-      start: activeTaskState.startTime,
-      end: now,
-    });
+    if (shouldSaveInterval(activeTaskState, now)) {
+      await db.timeIntervals.add(closeActiveTaskInterval(activeTaskState, now));
+    }
 
     await db.activeTaskState.delete(ACTIVE_TASK_STATE_PRIMARY_KEY);
   });

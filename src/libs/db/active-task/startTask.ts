@@ -1,6 +1,8 @@
-import { differenceInMilliseconds } from "date-fns";
-
-import { ActiveTaskState, Task } from "@/libs/domain/model";
+import { Task } from "@/libs/domain/model";
+import {
+  closeActiveTaskInterval,
+  shouldSaveInterval,
+} from "@/libs/domain/time-intervals/activeTaskInterval";
 
 import { ACTIVE_TASK_STATE_PRIMARY_KEY, db } from "../_internal/db";
 
@@ -12,12 +14,8 @@ export const startTask = async (taskId: Task["id"]) => {
       ACTIVE_TASK_STATE_PRIMARY_KEY,
     );
 
-    if (activeTaskState && shouldSaveInterval(now, activeTaskState)) {
-      await db.timeIntervals.add({
-        taskId: activeTaskState.taskId,
-        start: activeTaskState.startTime,
-        end: now,
-      });
+    if (activeTaskState && shouldSaveInterval(activeTaskState, now)) {
+      await db.timeIntervals.add(closeActiveTaskInterval(activeTaskState, now));
     }
 
     await db.activeTaskState.put({
@@ -26,11 +24,4 @@ export const startTask = async (taskId: Task["id"]) => {
       startTime: now,
     });
   });
-};
-
-const SAVE_INTERVAL_THRESHOLD_MS = 3000;
-
-const shouldSaveInterval = (now: Date, activeTaskState: ActiveTaskState) => {
-  const diff = differenceInMilliseconds(now, activeTaskState.startTime);
-  return diff >= SAVE_INTERVAL_THRESHOLD_MS;
 };

@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 
 import { Task } from "@/libs/domain/model";
-import { calculateDuration } from "@/libs/domain/time-intervals/calculateDuration";
+import { calculateDuration } from "@/libs/domain/time-intervals/timeIntervals";
 
 import { useTaskTimeIntervals } from "./useTaskTimeIntervals";
 

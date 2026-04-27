@@ -1,6 +1,6 @@
-import { getInitialEnd, getInitialStart } from "./getInitial";
+import { getInitialEnd, getInitialStart } from "./initialInterval";
 
-describe("getInitial", () => {
+describe("initialInterval", () => {
   describe("getInitialStart", () => {
     const mountTime = new Date("2024-01-15T10:00:00");
 

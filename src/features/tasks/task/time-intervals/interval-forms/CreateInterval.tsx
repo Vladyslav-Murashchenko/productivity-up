@@ -5,7 +5,7 @@ import { Task } from "@/libs/domain/model";
 import {
   getInitialEnd,
   getInitialStart,
-} from "@/libs/domain/time-intervals/getInitial";
+} from "@/libs/domain/time-intervals/initialInterval";
 import { withErrorToast } from "@/libs/ui/utils/withErrorToast";
 
 import { IntervalForm } from "./IntervalForm";
