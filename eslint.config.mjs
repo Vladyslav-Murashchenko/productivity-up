@@ -49,11 +49,7 @@ const eslintConfig = defineConfig([
           rules: [
             {
               from: { type: "app" },
-              allow: {
-                to: {
-                  type: ["feature", "lib-ui"],
-                },
-              },
+              allow: { to: { type: ["feature", "lib-ui"] } },
             },
             {
               from: { type: ["feature", "shared-feature"] },
