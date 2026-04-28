@@ -1,5 +1,6 @@
 import nextVitals from "eslint-config-next/core-web-vitals";
 import nextTs from "eslint-config-next/typescript";
+import boundaries from "eslint-plugin-boundaries";
 import { defineConfig, globalIgnores } from "eslint/config";
 import tseslint from "typescript-eslint";
 
@@ -27,6 +28,109 @@ const eslintConfig = defineConfig([
     },
   },
   {
+    plugins: { boundaries },
+    settings: {
+      "boundaries/elements": [
+        { type: "app", pattern: "src/app" },
+        { type: "feature", pattern: "src/features/*" },
+        { type: "shared-feature", pattern: "src/shared-features/*" },
+        { type: "lib-ui", pattern: "src/libs/ui" },
+        { type: "lib-db", pattern: "src/libs/db" },
+        { type: "lib-domain", pattern: "src/libs/domain" },
+        { type: "lib-animations", pattern: "src/libs/animations" },
+      ],
+    },
+    rules: {
+      "boundaries/dependencies": [
+        "error",
+        {
+          default: "disallow",
+          checkAllOrigins: true,
+          rules: [
+            {
+              from: { type: "app" },
+              allow: {
+                to: {
+                  type: ["feature", "lib-ui"],
+                },
+              },
+            },
+            {
+              from: { type: ["feature", "shared-feature"] },
+              allow: {
+                to: {
+                  type: [
+                    "shared-feature",
+                    "lib-ui",
+                    "lib-db",
+                    "lib-domain",
+                    "lib-animations",
+                  ],
+                },
+              },
+            },
+            {
+              from: { type: "lib-db" },
+              allow: { to: { type: "lib-domain" } },
+            },
+            {
+              disallow: {
+                to: {
+                  type: ["feature", "shared-feature"],
+                  internalPath: "!index.ts",
+                },
+              },
+            },
+            {
+              disallow: {
+                to: {
+                  type: ["lib-db", "lib-animations"],
+                  internalPath: "_internal/**",
+                },
+              },
+            },
+            { allow: { to: { origin: "external" } } },
+            {
+              disallow: {
+                to: { origin: "external" },
+                dependency: {
+                  source: [
+                    "@heroui/react",
+                    "@heroui/styles",
+                    "dexie",
+                    "dexie-react-hooks",
+                    "motion/react",
+                  ],
+                },
+              },
+            },
+            {
+              from: { type: "lib-ui" },
+              allow: {
+                to: { origin: "external" },
+                dependency: { source: ["@heroui/react", "@heroui/styles"] },
+              },
+            },
+            {
+              from: { type: "lib-db" },
+              allow: {
+                to: { origin: "external" },
+                dependency: { source: ["dexie", "dexie-react-hooks"] },
+              },
+            },
+            {
+              from: { type: "lib-animations" },
+              allow: {
+                to: { origin: "external" },
+                dependency: { source: ["motion/react"] },
+              },
+            },
+          ],
+        },
+      ],
+    },
+  },
+  {
     files: ["src/features/**", "src/shared-features/**"],
     rules: {
       "no-restricted-imports": [
@@ -47,191 +151,6 @@ const eslintConfig = defineConfig([
               group: ["@/features/**"],
               message:
                 "Features cannot import from features folder. If u want to import a child feature, use relative path instead.",
-            },
-            {
-              group: ["@/app/**"],
-              message: "Features cannot import from app.",
-            },
-            {
-              group: ["@/shared-features/*/**"],
-              message:
-                "Features can only import from root level of shared-features (via index.ts). All nested directories and files are private. Import from '@/shared-features/*' instead.",
-            },
-            {
-              group: ["@heroui/react", "@heroui/styles"],
-              message: "Can be used only in src/libs/ui",
-            },
-            {
-              group: ["dexie", "dexie-react-hooks", "@/libs/db/_internal/**"],
-              message: "Can be used only in src/libs/db",
-            },
-            {
-              group: ["motion/*", "@/libs/animations/_internal/**"],
-              message: "Can be used only in src/libs/animations",
-            },
-          ],
-        },
-      ],
-    },
-  },
-  {
-    files: ["src/app/**"],
-    rules: {
-      "no-restricted-imports": [
-        "error",
-        {
-          patterns: [
-            {
-              group: ["@/features/*/**", "@/shared-features/*/**"],
-              message:
-                "App can only import features and shared-features via their root index.ts barrel files. Import from '@/features/*' or '@/shared-features/*' instead.",
-            },
-            {
-              group: ["@heroui/react", "@heroui/styles"],
-              message: "Can be used only in src/libs/ui",
-            },
-            {
-              group: ["dexie", "dexie-react-hooks", "@/libs/db/_internal/**"],
-              message: "Can be used only in src/libs/db",
-            },
-            {
-              group: ["motion", "@/libs/animations/_internal/**"],
-              message: "Can be used only in src/libs/animations",
-            },
-          ],
-        },
-      ],
-    },
-  },
-  {
-    files: ["src/libs/ui/**"],
-    rules: {
-      "no-restricted-imports": [
-        "error",
-        {
-          patterns: [
-            {
-              group: [
-                "@/features/**",
-                "@/shared-features/**",
-                "@/app/**",
-                "@/libs/db/**",
-                "@/libs/ui/**",
-                "@/libs/animations/**",
-                "@/libs/domain/**",
-              ],
-              message:
-                "This lib cannot import from features, shared-features, and other libs",
-            },
-            {
-              group: ["dexie", "dexie-react-hooks", "@/libs/db/_internal/**"],
-              message: "Can be used only in src/libs/db",
-            },
-            {
-              group: ["motion", "@/libs/animations/_internal/**"],
-              message: "Can be used only in src/libs/animations",
-            },
-          ],
-        },
-      ],
-    },
-  },
-  {
-    files: ["src/libs/db/**"],
-    rules: {
-      "no-restricted-imports": [
-        "error",
-        {
-          patterns: [
-            {
-              group: [
-                "@/features/**",
-                "@/shared-features/**",
-                "@/app/**",
-                "@/libs/db/**",
-                "@/libs/ui/**",
-                "@/libs/animations/**",
-              ],
-              message:
-                "This lib cannot import from features, shared-features, and other libs",
-            },
-            {
-              group: ["@heroui/react", "@heroui/styles"],
-              message: "Can be used only in src/libs/ui",
-            },
-            {
-              group: ["motion", "@/libs/animations/_internal/**"],
-              message: "Can be used only in src/libs/animations",
-            },
-          ],
-        },
-      ],
-    },
-  },
-  {
-    files: ["src/libs/animations/**"],
-    rules: {
-      "no-restricted-imports": [
-        "error",
-        {
-          patterns: [
-            {
-              group: [
-                "@/features/**",
-                "@/shared-features/**",
-                "@/app/**",
-                "@/libs/db/**",
-                "@/libs/ui/**",
-                "@/libs/animations/**",
-                "@/libs/domain/**",
-              ],
-              message:
-                "This lib cannot import from features, shared-features, and other libs",
-            },
-            {
-              group: ["@heroui/react", "@heroui/styles"],
-              message: "Can be used only in src/libs/ui",
-            },
-            {
-              group: ["dexie", "dexie-react-hooks", "@/libs/db/_internal/**"],
-              message: "Can be used only in src/libs/db",
-            },
-          ],
-        },
-      ],
-    },
-  },
-  {
-    files: ["src/libs/domain/**"],
-    rules: {
-      "no-restricted-imports": [
-        "error",
-        {
-          patterns: [
-            {
-              group: [
-                "@/features/**",
-                "@/shared-features/**",
-                "@/app/**",
-                "@/libs/db/**",
-                "@/libs/ui/**",
-                "@/libs/animations/**",
-                "@/libs/domain/**",
-              ],
-              message:
-                "This lib cannot import from features, shared-features, and other libs",
-            },
-            {
-              group: ["@heroui/react", "@heroui/styles"],
-              message: "Can be used only in src/libs/ui",
-            },
-            {
-              group: ["dexie", "dexie-react-hooks", "@/libs/db/_internal/**"],
-              message: "Can be used only in src/libs/db",
-            },
-            {
-              group: ["motion", "@/libs/animations/_internal/**"],
-              message: "Can be used only in src/libs/animations",
             },
           ],
         },
