@@ -8,6 +8,7 @@ const eslintConfig = defineConfig([
   ...nextVitals,
   ...nextTs,
   ...tseslint.configs.strictTypeChecked,
+  ...tseslint.configs.stylisticTypeChecked,
   // Override default ignores of eslint-config-next.
   globalIgnores([
     // Default ignores of eslint-config-next:
@@ -155,6 +156,7 @@ const eslintConfig = defineConfig([
   },
   {
     rules: {
+      "@typescript-eslint/consistent-type-definitions": ["error", "type"],
       "import/no-cycle": "error",
       "@typescript-eslint/no-unused-vars": [
         "error",
