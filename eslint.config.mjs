@@ -7,7 +7,7 @@ import tseslint from "typescript-eslint";
 const eslintConfig = defineConfig([
   ...nextVitals,
   ...nextTs,
-  ...tseslint.configs.recommendedTypeChecked,
+  ...tseslint.configs.strictTypeChecked,
   // Override default ignores of eslint-config-next.
   globalIgnores([
     // Default ignores of eslint-config-next:

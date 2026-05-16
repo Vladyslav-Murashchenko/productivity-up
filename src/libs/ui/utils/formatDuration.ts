@@ -17,14 +17,14 @@ export function formatDuration(totalMs: number): string {
   const parts: string[] = [];
 
   if (hours > 0) {
-    parts.push(`${hours}h`);
+    parts.push(`${String(hours)}h`);
   }
 
   if (minutes > 0 || hours > 0) {
-    parts.push(`${minutes}m`);
+    parts.push(`${String(minutes)}m`);
   }
 
-  parts.push(`${seconds}s`);
+  parts.push(`${String(seconds)}s`);
 
   return parts.join(" ");
 }

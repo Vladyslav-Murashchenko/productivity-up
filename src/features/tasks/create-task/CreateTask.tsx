@@ -56,7 +56,9 @@ export const CreateTask = ({ onCreateSuccess }: CreateTaskProps) => {
             variant="secondary"
             id={taskNameInputId}
             value={taskName}
-            onChange={(e) => setTaskName(e.target.value)}
+            onChange={(e) => {
+              setTaskName(e.target.value);
+            }}
             placeholder="Enter a task..."
           />
         </TextField>

@@ -31,7 +31,9 @@ export const EditTaskNameModal = ({
         formId={formId}
         taskId={taskId}
         currentName={currentName}
-        onSubmitSuccess={() => onOpenChange(false)}
+        onSubmitSuccess={() => {
+          onOpenChange(false);
+        }}
       />
     </FormModal>
   );

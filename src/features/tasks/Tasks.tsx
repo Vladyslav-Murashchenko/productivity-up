@@ -29,7 +29,11 @@ export const Tasks = () => {
             onTaskCompleteSuccess={temporaryHideTask}
           />
         ) : (
-          <CreateTask onCreateSuccess={() => setActiveFilter("todo")} />
+          <CreateTask
+            onCreateSuccess={() => {
+              setActiveFilter("todo");
+            }}
+          />
         )}
       </div>
       <Filters

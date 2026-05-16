@@ -75,7 +75,7 @@ export const IntervalForm = ({
             label="Start:"
             value={start}
             onChange={handleStartChange}
-            errorMessage={error?.start}
+            errorMessage={error.start}
           />
           <DateTimePicker
             className="flex-row justify-start items-center"
@@ -83,7 +83,7 @@ export const IntervalForm = ({
             label="End:"
             value={end}
             onChange={handleEndChange}
-            errorMessage={error?.end}
+            errorMessage={error.end}
           />
         </div>
         <div className="flex gap-2 ml-auto">

@@ -20,7 +20,9 @@ export const TaskName = ({ taskId, name }: TaskNameProps) => {
         variant="text"
         className="w-full justify-start"
         aria-describedby={editTaskNameDescId}
-        onClick={() => setIsOpen(true)}
+        onClick={() => {
+          setIsOpen(true);
+        }}
       >
         <span className="flex-1 truncate text-left">{name}</span>
       </Button>

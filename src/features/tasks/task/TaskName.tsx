@@ -20,7 +20,9 @@ export const TaskName = ({ taskId, name }: TaskNameProps) => {
         variant="text"
         className="flex-1 justify-start whitespace-normal wrap-anywhere min-h-fit text-left"
         aria-describedby={editTaskNameDescId}
-        onClick={() => setIsOpen(true)}
+        onClick={() => {
+          setIsOpen(true);
+        }}
       >
         {name}
       </Button>

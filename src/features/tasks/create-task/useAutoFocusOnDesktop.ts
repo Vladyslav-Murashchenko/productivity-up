@@ -4,11 +4,11 @@ export const useAutoFocusOnDesktop = () => {
   const ref = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    const isDesktop =
-      globalThis.window.matchMedia?.("(hover: hover) and (pointer: fine)")
-        .matches ?? false;
+    const desktopMediaQuery = globalThis.window.matchMedia(
+      "(hover: hover) and (pointer: fine)",
+    );
 
-    if (isDesktop) {
+    if (desktopMediaQuery.matches) {
       ref.current?.focus();
     }
   }, []);
