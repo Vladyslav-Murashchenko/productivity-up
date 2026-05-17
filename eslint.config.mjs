@@ -1,6 +1,7 @@
 import nextVitals from "eslint-config-next/core-web-vitals";
 import nextTs from "eslint-config-next/typescript";
 import boundaries from "eslint-plugin-boundaries";
+import { strict as strictBoundaries } from "eslint-plugin-boundaries/config";
 import { defineConfig, globalIgnores } from "eslint/config";
 import tseslint from "typescript-eslint";
 
@@ -18,7 +19,13 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
     "postcss.config.*",
     "eslint.config.*",
+    "next.config.*",
+    "vitest.config.*",
+    "vitest.setup.*",
     "public/**",
+    // Skill/agent assets are not part of the project source:
+    ".agents/**",
+    ".claude/**",
   ]),
   {
     ignores: ["**", "!src/**"],
@@ -32,6 +39,7 @@ const eslintConfig = defineConfig([
   {
     plugins: { boundaries },
     settings: {
+      ...strictBoundaries.settings,
       "boundaries/elements": [
         { type: "app", pattern: "src/app" },
         { type: "feature", pattern: "src/features/*" },
@@ -43,6 +51,7 @@ const eslintConfig = defineConfig([
       ],
     },
     rules: {
+      ...strictBoundaries.rules,
       "boundaries/dependencies": [
         "error",
         {
