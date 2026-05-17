@@ -21,6 +21,7 @@ const eslintConfig = defineConfig([
     "public/**",
   ]),
   {
+    ignores: ["**", "!src/**"],
     languageOptions: {
       parserOptions: {
         project: true,
