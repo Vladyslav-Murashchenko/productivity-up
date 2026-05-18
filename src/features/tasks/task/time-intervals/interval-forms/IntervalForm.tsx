@@ -67,6 +67,7 @@ export const IntervalForm = ({
       <form
         onSubmit={handleSubmit}
         className="flex flex-row flex-wrap items-center gap-6"
+        noValidate
       >
         <div className="flex flex-col gap-1">
           <DateTimePicker
