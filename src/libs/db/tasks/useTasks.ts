@@ -1,6 +1,6 @@
 import { useLiveQuery } from "dexie-react-hooks";
 
-import { db } from "../_internal/db";
+import { db } from "../_db";
 
 export const useTasks = () => {
   const tasks = useLiveQuery(() => {

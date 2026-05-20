@@ -91,8 +91,8 @@ const eslintConfig = defineConfig([
             {
               disallow: {
                 to: {
-                  type: ["lib-db", "lib-animations"],
-                  internalPath: "_internal/**",
+                  type: ["lib-*"],
+                  internalPath: "_*",
                 },
               },
             },

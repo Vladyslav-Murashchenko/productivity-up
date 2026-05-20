@@ -4,7 +4,7 @@ import {
   shouldSaveInterval,
 } from "@/libs/domain/time-intervals/activeTaskInterval";
 
-import { ACTIVE_TASK_STATE_PRIMARY_KEY, db } from "../_internal/db";
+import { ACTIVE_TASK_STATE_PRIMARY_KEY, db } from "../_db";
 
 export const startTask = async (taskId: Task["id"]) => {
   const now = new Date();

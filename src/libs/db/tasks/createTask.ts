@@ -1,4 +1,4 @@
-import { db } from "../_internal/db";
+import { db } from "../_db";
 
 export const createTask = async (taskName: string) => {
   if (taskName.trim() === "") {

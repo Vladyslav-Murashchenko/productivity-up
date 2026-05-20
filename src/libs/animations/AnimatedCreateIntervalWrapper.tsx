@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 
-import { transition } from "./_internal/settings";
+import { transition } from "./_settings";
 
 type AnimatedCreateIntervalWrapperProps = {
   children: React.ReactNode;
