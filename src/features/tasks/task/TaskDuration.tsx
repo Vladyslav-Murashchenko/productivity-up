@@ -1,7 +1,7 @@
 import { Clock } from "@gravity-ui/icons";
 import { useId } from "react";
 
-import { useTaskDuration } from "@/libs/db/time-intervals/useTaskDuration";
+import { useTaskSavedDuration } from "@/libs/db/time-intervals/useTaskSavedDuration";
 import { Task } from "@/libs/domain/model";
 import { Button } from "@/libs/ui/Button";
 import { formatDuration } from "@/libs/ui/utils/formatDuration";
@@ -15,7 +15,7 @@ type TaskDurationProps = {
 export const TaskDuration = ({ taskId }: TaskDurationProps) => {
   const editTaskTimeDescId = useId();
 
-  const { taskDuration } = useTaskDuration({ taskId });
+  const { taskDuration } = useTaskSavedDuration({ taskId });
 
   if (taskDuration === undefined) {
     return null;

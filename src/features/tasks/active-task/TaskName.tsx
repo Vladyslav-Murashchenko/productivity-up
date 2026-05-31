@@ -24,7 +24,7 @@ export const TaskName = ({ taskId, name }: TaskNameProps) => {
           setIsOpen(true);
         }}
       >
-        <span className="flex-1 truncate text-left">{name}</span>
+        <span className="flex-1 truncate text-left text-3xl">{name}</span>
       </Button>
       <span id={editTaskNameDescId} className="sr-only">
         Edit active task name

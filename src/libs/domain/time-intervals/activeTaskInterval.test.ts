@@ -1,5 +1,6 @@
 import { ActiveTaskState } from "../model";
 import {
+  calculateActiveSessionDuration,
   closeActiveTaskInterval,
   shouldSaveInterval,
 } from "./activeTaskInterval";
@@ -41,6 +42,14 @@ describe("activeTaskInterval", () => {
         start: new Date("2024-01-15T10:00:00"),
         end: now,
       });
+    });
+  });
+
+  describe("calculateActiveSessionDuration", () => {
+    it("returns milliseconds elapsed since startTime", () => {
+      const now = new Date("2024-01-15T10:01:30");
+
+      expect(calculateActiveSessionDuration(activeTaskState, now)).toBe(90_000);
     });
   });
 });

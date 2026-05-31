@@ -5,7 +5,7 @@ import { useActiveTaskState } from "@/libs/db/active-task/useActiveTaskState";
 import { createTask } from "@/libs/db/tasks/createTask";
 import { useTask } from "@/libs/db/tasks/useTask";
 import { useTasks } from "@/libs/db/tasks/useTasks";
-import { useTaskDuration } from "@/libs/db/time-intervals/useTaskDuration";
+import { useTaskSavedDuration } from "@/libs/db/time-intervals/useTaskSavedDuration";
 import { useTaskTimeIntervals } from "@/libs/db/time-intervals/useTaskTimeIntervals";
 
 import { Tasks } from "./Tasks";
@@ -14,7 +14,7 @@ vi.mock("@/libs/db/tasks/createTask");
 vi.mock("@/libs/db/active-task/useActiveTaskState");
 vi.mock("@/libs/db/tasks/useTask");
 vi.mock("@/libs/db/tasks/useTasks");
-vi.mock("@/libs/db/time-intervals/useTaskDuration");
+vi.mock("@/libs/db/time-intervals/useTaskSavedDuration");
 vi.mock("@/libs/db/time-intervals/useTaskTimeIntervals");
 
 const renderTasks = () => render(<Tasks />);
@@ -46,7 +46,7 @@ describe("Tasks", () => {
       ],
     });
 
-    vi.mocked(useTaskDuration).mockReturnValue({
+    vi.mocked(useTaskSavedDuration).mockReturnValue({
       taskDuration: 0,
     });
 

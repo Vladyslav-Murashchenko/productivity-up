@@ -4,7 +4,7 @@ import userEvent from "@testing-library/user-event";
 import { startTask } from "@/libs/db/active-task/startTask";
 import { deleteTask } from "@/libs/db/tasks/deleteTask";
 import { reopenTask } from "@/libs/db/tasks/reopenTask";
-import { useTaskDuration } from "@/libs/db/time-intervals/useTaskDuration";
+import { useTaskSavedDuration } from "@/libs/db/time-intervals/useTaskSavedDuration";
 import { useTaskTimeIntervals } from "@/libs/db/time-intervals/useTaskTimeIntervals";
 
 import { Task } from "./Task";
@@ -13,7 +13,7 @@ vi.mock("@/libs/db/active-task/startTask");
 vi.mock("@/libs/db/tasks/reopenTask");
 vi.mock("@/libs/db/tasks/deleteTask");
 vi.mock("@/libs/db/tasks/updateTaskName");
-vi.mock("@/libs/db/time-intervals/useTaskDuration");
+vi.mock("@/libs/db/time-intervals/useTaskSavedDuration");
 vi.mock("@/libs/db/time-intervals/useTaskTimeIntervals");
 vi.mock("@/libs/db/time-intervals/createTimeInterval");
 vi.mock("@/libs/db/time-intervals/updateTimeInterval");
@@ -26,7 +26,7 @@ describe("Task", () => {
   beforeEach(() => {
     vi.clearAllMocks();
 
-    vi.mocked(useTaskDuration).mockReturnValue({
+    vi.mocked(useTaskSavedDuration).mockReturnValue({
       taskDuration: 3600000, // 1 hour
     });
 
@@ -37,7 +37,7 @@ describe("Task", () => {
 
   describe("todo task", () => {
     it("renders zero duration", () => {
-      vi.mocked(useTaskDuration).mockReturnValue({
+      vi.mocked(useTaskSavedDuration).mockReturnValue({
         taskDuration: 0,
       });
 

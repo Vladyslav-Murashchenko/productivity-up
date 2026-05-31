@@ -22,3 +22,10 @@ export function closeActiveTaskInterval(
     end: now,
   };
 }
+
+export function calculateActiveSessionDuration(
+  activeTaskState: ActiveTaskState,
+  now: Date,
+) {
+  return differenceInMilliseconds(now, activeTaskState.startTime);
+}

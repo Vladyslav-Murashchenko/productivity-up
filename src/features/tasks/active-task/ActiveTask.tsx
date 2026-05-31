@@ -50,9 +50,7 @@ export const ActiveTask = ({
           <h2 className="text-xs opacity-80">Active Task</h2>
           <TaskName taskId={activeTask.id} name={activeTask.name} />
         </div>
-        <div className="flex items-end">
-          <Timer taskId={activeTask.id} startTime={activeTaskState.startTime} />
-        </div>
+        <Timer activeTaskState={activeTaskState} />
       </div>
       <div className="flex gap-2 justify-center">
         <Button
