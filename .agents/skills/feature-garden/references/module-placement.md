@@ -4,15 +4,21 @@
 
 When deciding where a module should live, follow this sequence:
 
-1. **Should this module be reusable across features?**
+Before deciding, read `feature-garden.config.yaml` and [Libraries](./libraries.md) to understand the existing libraries and their responsibilities.
+
+1. **Does it represent a well-defined concern that already has a matching library?**
+   - Yes → put it into that library.
+   - No → continue to step 2.
+
+2. **Should this module be reusable across features?**
    - No → keep it within the current feature.
-   - Yes → continue to step 2.
+   - Yes → continue to step 3.
 
-2. **Does it represent a single, well-defined concern?**
-   - Yes → put it into a dedicated library. Check existing libraries in `feature-garden.config.yaml` first. Suggest creating a new library only when none of the existing libraries fit.
-   - No → continue to step 3.
+3. **Does it represent a single, well-defined concern?**
+   - Yes → suggest [creating a new library](./libraries.md#adding-a-new-library) to the user.
+   - No → continue to step 4.
 
-3. **Are you sure this reuse does not violate SRP?**
+4. **Are you sure this reuse does not violate SRP?**
    - No → do not reuse. Keep it in the feature and accept duplication.
    - Yes → reuse via a shared feature.
 
@@ -20,17 +26,17 @@ When deciding where a module should live, follow this sequence:
 
 Libraries are the primary reuse mechanism. They encapsulate a single concern (e.g., domain logic, data access, UI primitives).
 
-Shared features are for code that already depends on multiple libraries (e.g., a composition of UI + API). They are a deliberate trade-off — use only when you are confident the module has a single reason to change.
+Shared features are for code that already depends on multiple libraries (e.g., a UI + API composition). They are a deliberate trade-off — use only when you are confident the module has a single reason to change.
 
 Overusing shared features leads to complex and fragile dependency structures.
 
-## Within a Feature
-
-Keep all modules directly in the feature folder — no additional segmentation by type (no `hooks/`, `components/`, `utils/` subfolders).
-
 ## Reuse Within a Single Feature
 
-If reuse happens only within the scope of one feature (e.g., two sibling modules importing the same helper), a shared feature is not needed. Just keep the shared module in the common parent feature.
+If reuse happens only inside one parent feature, do not create a shared feature.
+
+Keep the code inside that parent feature:
+- as a plain module, for implementation reuse
+- as a nested feature, for a cohesive feature-level capability
 
 ## Key Heuristics For Reuse
 
